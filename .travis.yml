@@ -5,6 +5,7 @@ node_js:
 before_script:
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.0
+  - npm install -g zos
 
 script:
   # delete provided testing files
