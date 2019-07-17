@@ -4,7 +4,7 @@ Sensitive products maintenance tracking solution
 ## Business case
 For certain categories of products, keeping track of their proper maintenance is legally enforced or at least demanded by third parties (insurer, manufacturer, buyers for second hand usage, ...). This is especially true when these products can put in danger peoples'lives. Still providing a proven track is very challenging.
 
-Let's take the example of gas boilers. nce a year, every owner of a gas boiler must have a professional checks its proper operation. The professional needs to follow a check list (of controls) which is specified by law. When all the controls are passed, the professional must deliver to the owner a certificate of control. Besides the fact that owners should be aware of the dangerousness of not maintaining regularly a gas boiler, this certificate is requested by manufacturers when an issue occurs during warranty period or by insurers when an incident occurs. Today, the system has lots of drawbacks  :
+Let's take the example of gas boilers. Once a year, every owner of a gas boiler must have a technician checks its proper operation. The technician needs to follow a check list (of controls) which is specified by law. When all the controls are passed, the technician must deliver to the owner a certificate of control. Besides the fact that owners should be aware of the dangerousness of not maintaining regularly a gas boiler, this certificate is requested by manufacturers when an issue occurs during warranty period or by insurers when an incident occurs. Today, the system has lots of drawbacks  :
 * The owner is not willing to pay for the annual checkup (around 150 euros) and will request a backdated certificate from a dishonest professional when requested by the insurer or constructor
 * Lot's of so call professionals do not fulfill a proper checkup (happened to me the past two years !), making a lucrative business but putting in risk the owners and scamming the insurers and constructors
 * Several certification bodies evaluate the professionals' knowledge and good practices, but their task is probably difficult to accomplish (well) due lack of track record of day to day activities
@@ -32,25 +32,24 @@ For managing **Professional Offices**, I have created two smart contracts (to ea
 * *ProfessionalOfficesStorage.sol*, the storage contract
 * *ProfessionalOfficesImplV1.sol*, the business logic contract which inherits from the storage contract
 
-For managing **product units**, at first I was about to represent each unit as a non-fungible token, by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a contrat per unit. In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attach an address to a unit.
+For managing **product units**, at first I was about to represent each unit as a non-fungible token, by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a contrat per unit. In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit.
 
-Both the ProfessionalOfficesImplV1 and the UnitFactory contracts inherit from the *WhitelistAdminRole* from **OpenZeppelin** in order to limit access to certain methods.
+Both the ProfessionalOfficesImplV1 and the UnitFactory contracts inherit from the *WhitelistAdminRole* from **OpenZeppelin** (included as an EVM package) in order to limit access to certain methods.
 
 As we can consider that there is no trusted area between all actors involved, a public Ethereum blockchain would the natural choice. Now we can also consider being trutsful a consortium blockchain where nodes are run by enought parties having opposed objectivs (trust could be enforced by writting to a smart contract on the public blockchain, the blocks root hashes of the consortium blockchain).
 
 Project is built using Zepkit, a truffle box containing React, ZeppelinOS, OpenZeppelin, Truffle and Infura.
 This brings :
-- Includes OpenZeppelin as an EVM package.
 - Upgradeable smart contracts with ZeppelinOS (using proxy pattern).
-- Includes Infura setup for easy deployments & connection.
-- Truffle to compile & test smart contracts.
 - React &  Rimble to build usable and friendly interfaces.
 
+## Beyon this simple MVP
+List of improvments :
+* The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
+* It would be convenient to reference Manufacturers and products, especially for manufacturers to gather statistics about their products.
+* A scoring could be calculated for each unit as an indicator of the level of quality of the maintainance of a unit. The calculation rules would vary from one product to an other. This indicator could be used for instance by insurers/owners to negociate the insurance premium for a contract, or by buyers to estimate the value of a second hand unit.
 
-Storage contracts
-Implementation contract
-
-
+## Questions
 - Does it make sence to use uint8, uint16, ... instead of uint32 to save space ?
 - Is it better to use bytes32 instead of string is length if limited ?
 - Should I manage Manufacturers and products with different contracts ? 
