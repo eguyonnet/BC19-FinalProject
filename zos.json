@@ -1,0 +1,10 @@
+{
+  "zosversion": "2.2",
+  "name": "UnitLifeCycle",
+  "version": "1.0.1",
+  "contracts": {
+  },
+  "dependencies": {
+    "openzeppelin-eth": "^2.2.0"
+  }
+}

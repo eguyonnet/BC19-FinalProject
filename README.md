@@ -25,7 +25,7 @@ The first version of the solution intends to solve the main issue: the registrat
 
 **Professional Offices**, created by autorized parties, employ **technicians** that are identified by their address on the blockchain. These technicians use their unique address to sign transactions, each representing an operation on a unit. 
 
-For **product units** (maintained by technicians), we need to store a few properties that identifies a unit (manufacturer, product model and unique identifiers), the owner of the unit, as well a list of operations completed by technicians. For each **Operation**, we first need verify that the technician's address (who signes the transaction) is known and valid, then store some data about the operation : category (setup, repair, ...) and a hash of the report (an exploitable json file stored on IPFS/SWARM). Finally, we should authorize a certified operator to set a statut in case of later control of the operation.
+For **product units** (maintained by technicians), we need to store a few properties that identifies a unit (manufacturer, product model and unique identifiers), the owner of the unit, as well a list of operations completed by technicians. For each **Operation**, we first need verify that the technician's address (who signes the transaction) is known and valid, then store some data about the operation : category (setup, repair, ...) and a hash of the report (an exploitable json file stored on IPFS/SWARM). Finally, we should authorize a certified operator to set a status in case of later control of the operation.
 
 ## Implementation
 For managing **Professional Offices**, I have created two smart contracts (to ease later upgrades) :
