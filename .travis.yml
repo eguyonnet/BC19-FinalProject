@@ -25,5 +25,5 @@ script:
   - zos link openzeppelin-eth
   - ganache-cli &
   - sleep 5
-  - zos push
+  #- zos push
   - truffle test
