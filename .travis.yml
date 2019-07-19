@@ -4,6 +4,7 @@ node_js:
 
 before_script:
   - npm install -g ganache-cli
+  - npm install solc
   - npm install -g truffle@5.0.4
   - npm install -g zos
   - npm install -g openzeppelin-eth
