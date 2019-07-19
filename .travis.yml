@@ -7,6 +7,7 @@ before_script:
   - npm install -g truffle@5.0.0
   - npm install -g zos
   - npm install -g openzeppelin-eth
+  - npm install -g zos-lib
   #- npm install -g openzeppelin-solidity
 
 script:
