@@ -1,5 +1,5 @@
 const BN = web3.utils.BN
-const ProfessionalsOffices = artifacts.require('./ProfessionalsOfficesImplV1.sol')
+const ProfessionalOffices = artifacts.require('./ProfessionalOfficesImplV1.sol')
 const UnitFactory = artifacts.require('UnitFactory')
 const Unit = artifacts.require("Unit")
 const catchRevert = require("./exceptionsHelpers.js").catchRevert
@@ -19,8 +19,8 @@ contract('Unit', function(accounts) {
     let unitInstance
 
     beforeEach(async () => {
-        //proOfficesInstance = await ProfessionalsOffices.deployed({from: admin})
-        proOfficesInstance = await ProfessionalsOffices.new({from: admin})
+        //proOfficesInstance = await ProfessionalOffices.deployed({from: admin})
+        proOfficesInstance = await ProfessionalOffices.new({from: admin})
         // Add a valid professional office with associated worker
         await proOfficesInstance.addProfessionalOffice(web3.utils.stringToHex("RepairMeGas"), [poOwner], [professional], {from: admin})
         //console.log(proOfficesInstance.address)
