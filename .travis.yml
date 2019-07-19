@@ -18,9 +18,9 @@ script:
   #- git clone https://github.com/eguyonnet/BC19-FinalProject.git 
   #- mv ./e9ec0d8d6c53b56ca9673cfa139b5644/eventTickets.test.js ./test/eventTickets.test.js
 
-  - ganache-cli &
-  - sleep 5
   - zos init
   - zos link openzeppelin-eth
+  - ganache-cli &
+  - sleep 5
   - zos push --deploy-dependencies --network development
   - truffle test
