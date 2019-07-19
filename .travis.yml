@@ -22,7 +22,7 @@ script:
   #- git clone https://github.com/eguyonnet/BC19-FinalProject.git 
   #- mv ./e9ec0d8d6c53b56ca9673cfa139b5644/eventTickets.test.js ./test/eventTickets.test.js
   - truffle version
-  - zos link openzeppelin-eth
+  #- zos link openzeppelin-eth
   - ganache-cli &
   - sleep 5
   #- zos push
