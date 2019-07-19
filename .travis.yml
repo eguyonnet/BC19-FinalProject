@@ -4,10 +4,11 @@ node_js:
 
 before_script:
   - npm install -g ganache-cli
-  - npm install -g truffle@5.0.0
+  - npm install -g truffle@5.0.4
   - npm install -g zos
   - npm install -g openzeppelin-eth
-  - npm install -g zos-lib
+  # Need to be installed in every projet :
+  - npm install zos-lib --save
   #- npm install -g openzeppelin-solidity
 
 script:
@@ -19,9 +20,8 @@ script:
   #- git clone https://github.com/eguyonnet/BC19-FinalProject.git 
   #- mv ./e9ec0d8d6c53b56ca9673cfa139b5644/eventTickets.test.js ./test/eventTickets.test.js
 
-  #- zos init
   - zos link openzeppelin-eth
   - ganache-cli &
   - sleep 5
-  - zos push --deploy-dependencies --network development
+  - zos push
   - truffle test
