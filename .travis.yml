@@ -20,6 +20,7 @@ script:
 
   - ganache-cli &
   - sleep 5
+  - zos init
   - zos link openzeppelin-eth
   - zos push --deploy-dependencies --network development
   - truffle test
