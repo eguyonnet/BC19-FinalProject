@@ -5,6 +5,7 @@ node_js:
 before_script:
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
+  - npm install -g solc
   - npm install -g zos
   - npm install -g openzeppelin-eth
   # Need to be installed in every projet :
