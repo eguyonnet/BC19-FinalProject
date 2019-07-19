@@ -5,7 +5,9 @@ node_js:
 before_script:
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.0
+  - npm install -g zos
   - npm install -g openzeppelin-eth
+  - npm install -g openzeppelin-solidity
 
 script:
   # delete provided testing files
@@ -18,4 +20,5 @@ script:
 
   - ganache-cli &
   - sleep 5
+  - zos push --deploy-dependencies --network development
   - truffle test
