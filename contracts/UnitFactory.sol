@@ -19,8 +19,8 @@ contract UnitFactory is WhitelistAdminRole, Pausable { //Initializable
     event UnitCreated(address indexed unitAddress, address indexed owner, bytes32 indexed modelNumber, bytes32 modelName, bytes32 manufacturerName);
 
     /// @notice constructor
+    //function initialize() public initializer {
     constructor() public { 
-	//function initialize() public initializer {
 		_addWhitelistAdmin(msg.sender);
         _addPauser(msg.sender);
     }
