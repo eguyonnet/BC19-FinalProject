@@ -43,7 +43,7 @@ This brings :
 - Upgradeable smart contracts with ZeppelinOS (using proxy pattern).
 - React &  Rimble to build usable and friendly interfaces.
 
-## Beyon this simple MVP
+## Beyond this simple MVP
 List of improvments :
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
 * It would be convenient to reference Manufacturers and products, especially for manufacturers to gather statistics about their products.
