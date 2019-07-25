@@ -1,7 +1,7 @@
 pragma solidity ^0.5.8;
 //pragma experimental ABIEncoderV2;
 
-//import "zos-lib/contracts/Initializable.sol";
+//import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "openzeppelin-eth/contracts/access/roles/WhitelistAdminRole.sol";
 //import "./openzeppelin/access/roles/WhitelistAdminRole.sol";
 import "./ProfessionalOfficesStorage.sol";
