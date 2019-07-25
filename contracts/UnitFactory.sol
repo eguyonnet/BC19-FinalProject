@@ -90,6 +90,16 @@ contract Unit {
     event OperationControlledKo(uint256 operationIndex);
     event UnitDestroyed();
 
+
+    /**
+     * @dev TODO Throws if the factory is not the msg.sender (used in constructor).
+     *      That would request to store the factory contract address as a hard coded constant ?
+    modifier onlyFactory() {
+        require(factoryAddr == msg.sender, "The Unit can only be created by the factory");
+        _;
+    }
+     */
+
     /**
      * @dev Throws if called by any account other than the owner.
      */
@@ -98,17 +108,19 @@ contract Unit {
         _;
     }
 
-    /**
-     *  @dev Owner address is provided because factory does not propagate the msg.sender when creation of a unit os requested
-     *       FUTURE TODO : check that this constructor can only be called by factory    
-     */
-    constructor(address _owner, bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName, address poc) public {
+    /// @notice returns the details of an given operation
+    /// @param _owner Owner address is provided because msg.sender is the factory contract address
+    /// @param _modelNumber Owner 
+    /// @param _modelName Owner 
+    /// @param _manufacturerName Owner 
+    /// @param _poc address of the ProfessionalOfficesImpl contract 
+    constructor(address _owner, bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName, address _poc) public {
         owner = _owner;
         manufacturerName = _manufacturerName;
         modelNumber = _modelNumber;
         modelName = _modelName;
         status = 1;
-        proOfficesContract = poc;
+        proOfficesContract = _poc;
     }
 
     // --------------------------------------------------
@@ -238,7 +250,6 @@ contract Unit {
     }
 
     /// @dev Create a new operation
-    // TODO msg.sender should be an activ technician from an activ professionnal agency
     function _operate(uint16 _categoryId, bytes32 _reportHash) private returns (uint) {
         // Alternativ : bytes memory data = abi.encodeWithSignature("isActivTechnician(address)", msg.sender);
         ProfessionalOfficesImplV1 po = ProfessionalOfficesImplV1(proOfficesContract);
