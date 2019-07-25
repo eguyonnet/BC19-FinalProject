@@ -1,6 +1,7 @@
 pragma solidity ^0.5.8;
 
 import "openzeppelin-eth/contracts/ownership/Ownable.sol";
+import "openzeppelin-eth/contracts/lifecycle/Pausable.sol";
 import "./ProfessionalOfficesImplV1.sol";
 
 /**
@@ -9,7 +10,7 @@ import "./ProfessionalOfficesImplV1.sol";
  *  @notice The unit factory produces a contract per unit - As a consequence, a unit can be easely identified and manipulated
  *          
  */
-contract UnitFactory is WhitelistAdminRole {
+contract UnitFactory is WhitelistAdminRole, Pausable { //Initializable
     
     address[] private units;
 
@@ -17,9 +18,11 @@ contract UnitFactory is WhitelistAdminRole {
 
     event UnitCreated(address indexed unitAddress, address indexed owner, bytes32 indexed modelNumber, bytes32 modelName, bytes32 manufacturerName);
 
-   	constructor() public { 
+    /// @notice constructor
+    constructor() public { 
 	//function initialize() public initializer {
 		_addWhitelistAdmin(msg.sender);
+        _addPauser(msg.sender);
     }
 
     /// @notice returns number of units created
@@ -33,11 +36,11 @@ contract UnitFactory is WhitelistAdminRole {
         return (units[_index]);
     }
 
-    /// @notice create a new unit and append it's address to the index list
+    /// @notice create a new unit and append it's address to the index list - Impleents an emergency stop pattern
     /// @param _modelNumber unit model identifier
     /// @param _modelName unit model name
     /// @param _manufacturerName unit manufacturer name
-    function createUnit(bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName) external {
+    function createUnit(bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName) whenNotPaused() external {
         require(proOfficesContract != address(0), "Invalid ProfessionnalsOffices contract address");
         address child = address(new Unit(msg.sender, _modelNumber, _modelName, _manufacturerName, proOfficesContract));
         units.push(child);
@@ -55,7 +58,6 @@ contract UnitFactory is WhitelistAdminRole {
 /**
  *	@title  Track a unit with associated operations 
  * 	@author E. Guyonnet
- *  @dev As unit is created by a factory, msg.sender == address(0) so using Ownable (openZepplin) is useless unless adding a new constructor to it with owner address as parameter
  */
 contract Unit {
 
@@ -108,11 +110,11 @@ contract Unit {
         _;
     }
 
-    /// @notice returns the details of an given operation
+    /// @notice constructor
     /// @param _owner Owner address is provided because msg.sender is the factory contract address
-    /// @param _modelNumber Owner 
-    /// @param _modelName Owner 
-    /// @param _manufacturerName Owner 
+    /// @param _modelNumber unit model identifier 
+    /// @param _modelName unit model name 
+    /// @param _manufacturerName unit manufacturer name 
     /// @param _poc address of the ProfessionalOfficesImpl contract 
     constructor(address _owner, bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName, address _poc) public {
         owner = _owner;

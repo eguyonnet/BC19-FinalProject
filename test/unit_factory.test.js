@@ -16,17 +16,21 @@ contract('UnitFactory', function(accounts) {
     beforeEach(async () => {
         proOfficesInstance = await ProfessionalOffices.deployed()
         //console.log(proOfficesInstance.address);
+        //await factoryInstance.initialize({ from: owner })
         factoryInstance = await UnitFactory.new({from: owner})
         await factoryInstance.setProfessionnalsOffices(proOfficesInstance.address, {from: owner})
-        //await factoryInstance.initialize({ from: owner })
     })
 
     describe("UnitFactory", async() => {
         describe("createUnit", async() => {
-            it("Should emit event", async()=>{
+            it("Should create unit and emit event when not paused", async()=>{
                 const tx = await factoryInstance.createUnit(web3.utils.stringToHex("VBA2428RT"), web3.utils.stringToHex("VIVADENS 24/28"), web3.utils.stringToHex("DE DIETRICH"), {from: alice})
                 //console.log(tx.logs[0])
                 assert.equal(tx.logs[0].event == "UnitCreated", true, 'Creating a Unit should emit a UnitCreated event')
+            })
+            it("Should fail when factory is paused", async()=>{
+                await factoryInstance.pause({from: owner})
+                await catchRevert(factoryInstance.createUnit(web3.utils.stringToHex("VBA2428RT"), web3.utils.stringToHex("VIVADENS 24/28"), web3.utils.stringToHex("DE DIETRICH"), {from: alice}))
             })
         })
         describe("getUnitsCount", async() => {
