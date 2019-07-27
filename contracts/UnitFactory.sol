@@ -61,8 +61,6 @@ contract UnitFactory is WhitelistAdminRole, Pausable { //Initializable
  */
 contract Unit {
 
-    uint8 private constant version = 1; 
-
     address private owner;
     bytes32 private modelNumber;
     bytes32 private modelName;
@@ -128,9 +126,10 @@ contract Unit {
     // --------------------------------------------------
     // EXTERNAL VIEW
     // --------------------------------------------------
+
     /// @notice returns version
-    function getVersion() external pure returns(uint8) {
-        return version;
+    function getVersion() public pure returns (string memory) {
+        return "1.0";
     }
 
     /// @notice returns owner

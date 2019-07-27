@@ -14,12 +14,6 @@ import "./ProfessionalOfficesStorage.sol";
  */
 contract ProfessionalOfficesImplV1 is ProfessionalOfficesStorage, WhitelistAdminRole { //Initializable
 
-	// Status of profesional offices
-    uint8 constant STATUS_CREATED = 1;
-    uint8 constant STATUS_ACTIV = 3;
-    uint8 constant STATUS_LOCKED = 5;
-    uint8 constant STATUS_CLOSED = 10;
-
     // EVENTS
 	event ProfessionalOfficeCreated(uint24 indexed id, bytes32 indexed name);
 	event ProfessionalOfficeActivated(uint24 indexed id, bytes32 indexed name);

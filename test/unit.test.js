@@ -35,7 +35,7 @@ contract('Unit', function(accounts) {
         describe("getVersion()", async() => {
             it("Should return version of Unit contract", async()=>{
                 const result = await unitInstance.getVersion()
-                assert.equal(result, Number(1), 'Unit contract version should be 1')
+                assert.equal(result, '1.0', 'Unit contract version should be 1')
             })
         })
         describe("getManufacturerName()", async() => {

@@ -28,4 +28,10 @@ contract ProfessionalOfficesStorage {
 	// Iterate through ProfesionnalOffices
 	uint24[] internal officesIdList;
 
+	// Status of profesional offices
+    uint8 constant STATUS_CREATED = 1;
+    uint8 constant STATUS_ACTIV = 3;
+    uint8 constant STATUS_LOCKED = 5;
+    uint8 constant STATUS_CLOSED = 10;
+	
 }
