@@ -26,7 +26,7 @@ export default class DisplayProfOffice extends Component {
                     <tbody> 
                         { this.props.listPO.map((item, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td>{this.props.web3.utils.hexToString(item.name)}</td>
                                     <td>{item.status.replace("1","Created")}</td>
                                     <td>{new Date(item.statusTime*1000).toLocaleDateString()}</td>

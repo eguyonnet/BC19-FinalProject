@@ -95,10 +95,8 @@ class App extends Component {
     var array = [];
     for (var i = 0; i < this.state.countPO; i++) {
       const result = await this.state.contractPO.methods.getProfessionalOffice(i+1).call();
-      console.log(result.name);
       array[i] = result;
     }
-    console.log(array);
     this.setState({ listPO: array });
   }
 
