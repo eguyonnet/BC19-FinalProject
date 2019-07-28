@@ -1,18 +1,19 @@
 pragma solidity ^0.5.8;
 //pragma experimental ABIEncoderV2;
 
-//import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "openzeppelin-eth/contracts/access/roles/WhitelistAdminRole.sol";
 //import "./openzeppelin/access/roles/WhitelistAdminRole.sol";
 import "./ProfessionalOfficesStorage.sol";
 
 /**
- *	@title  Repository for Professional Offices 
+ *	@title  Contract that holds the business logic for Professional Offices 
  * 	@author E. Guyonnet
- * TODO
- * 		- return struct when web3.js or with ABIEncoderV2 (or use ethers.js instead)
+ *  @notice Contains the methods / events / modifiers that interact with storage. 
+ *          Storage is prohibited in this contract for later deployment through openzeppelin transparent proxy !!
+ *  @dev TODO
+ * 		- return struct when web3.js will be compatible with ABIEncoderV2 (or use ethers.js instead)
  */
-contract ProfessionalOfficesImplV1 is ProfessionalOfficesStorage, WhitelistAdminRole { //Initializable
+contract ProfessionalOfficesImplV1 is ProfessionalOfficesStorage, WhitelistAdminRole { 
 
     // EVENTS
 	event ProfessionalOfficeCreated(uint24 indexed id, bytes32 indexed name);
@@ -43,7 +44,6 @@ contract ProfessionalOfficesImplV1 is ProfessionalOfficesStorage, WhitelistAdmin
 	}
 
    	constructor() public { 
-	//function initialize() public initializer {
 		_addWhitelistAdmin(msg.sender);
     }
 

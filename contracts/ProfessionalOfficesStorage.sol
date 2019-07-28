@@ -1,9 +1,9 @@
 pragma solidity ^0.5.8;
 
 /**
- *	@title  Storage data about professionals agencies
+ *	@title  Contract that stores data about professionals agencies that maintain units
  * 	@author E. Guyonnet
- *  @notice Store the data about professionals agencies that maintain units
+ *  @notice Storage contract. The data is manupulated by implementation (holding business logic) 
  *
  */
 contract ProfessionalOfficesStorage {
@@ -11,11 +11,10 @@ contract ProfessionalOfficesStorage {
 	struct ProfessionalOffice {
 		uint24 id;  				        	// Primary Key -> technical id (0 value used for testing existence)
 		bytes32 name;				        	// Office name
-		mapping(address => bool) owners; 		// Accounts that can manage data (not unique)
-		mapping(address => bool) technicians;	// Identify an member that operates / maintain units (unique)
+		mapping(address => bool) owners; 		// Addresses that can update the data of their profesional office (not unique)
+		mapping(address => bool) technicians;	// Addresses representing technicians that operate / maintain units (unique across all profesional offices)
 		uint8 status;				        	// Status
-		uint statusTime;			        	// Status date (default = block datetime)
-		//Document[] documents;             	// List of documents (ex. certifications, ...)
+		uint statusTime;			        	// Status date (default = block datetime as precision is not an issue)
 	}
 
 
@@ -29,6 +28,8 @@ contract ProfessionalOfficesStorage {
 	uint24[] internal officesIdList;
 
 	// Status of profesional offices
+	// I do not use ENUM because first at the moment they are not visible outside the contracts
+	// and second we can not insert (but dd) new values later
     uint8 constant STATUS_CREATED = 1;
     uint8 constant STATUS_ACTIV = 3;
     uint8 constant STATUS_LOCKED = 5;

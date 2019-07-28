@@ -5,12 +5,13 @@ import "openzeppelin-eth/contracts/lifecycle/Pausable.sol";
 import "./ProfessionalOfficesImplV1.sol";
 
 /**
- *	@title  Storage data about manufacturers and their products
+ *	@title  Contract that instanciates Unit contracts and keeps a reference of the units created
  * 	@author E. Guyonnet
- *  @notice The unit factory produces a contract per unit - As a consequence, a unit can be easely identified and manipulated
- *          
+ *  @notice When the factory creates a new Unit, it provides the child with :
+ *                  - the msg.sender address that will be the owner of the Unit (as the msg.sender for the Unit is the Factory contract address) 
+ *                  - the address of the Professional Offices business logic contract (child with call this contract to verify technician for operation)        
  */
-contract UnitFactory is WhitelistAdminRole, Pausable { //Initializable
+contract UnitFactory is WhitelistAdminRole, Pausable { 
     
     address[] private units;
 
@@ -57,7 +58,8 @@ contract UnitFactory is WhitelistAdminRole, Pausable { //Initializable
 
 /**
  *	@title  Track a unit with associated operations 
- * 	@author E. Guyonnet
+ * 	@author E. Guyonnet 
+ *  @notice Created by factory
  */
 contract Unit {
 
