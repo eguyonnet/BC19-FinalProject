@@ -8,7 +8,7 @@ before_script:
   - npm install -g solc@0.5.10
   #- npm install -g openzeppelin-eth
   #- npm install -g zos-lib
-  - npm install -g openzeppelin-solidity
+  - npm install openzeppelin-solidity
 
 script:
   # delete provided testing files
