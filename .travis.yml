@@ -6,9 +6,9 @@ before_script:
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
-  - npm install -g openzeppelin-eth
+  #- npm install -g openzeppelin-eth
   #- npm install -g zos-lib
-  #- npm install -g openzeppelin-solidity
+  - npm install -g openzeppelin-solidity
 
 script:
   # delete provided testing files
