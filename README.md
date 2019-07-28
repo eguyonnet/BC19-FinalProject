@@ -20,24 +20,24 @@ There is a need for a shared and unalterable track of the proper maintenance of 
 * Constructors finally have access to data they can use for improving the quality of their products
 * Government agencies would benefit from real statistics
 
-## Description of the minimum viable product
-The first version of the solution intends to solve the main issue: the registration of maintenance operations on units by qualified technicians working for approved agencies. 
+As we can consider that there is no trusted area between all actors involved, a public Ethereum blockchain would the natural choice. Now we can also consider being trutsful a consortium blockchain where nodes are run by enought parties having opposed objectivs (trust could be enforced by writting to a smart contract on the public blockchain, the blocks root hashes of the consortium blockchain).
 
-**Professional Offices**, created by autorized parties, employ **technicians** that are identified by their address on the blockchain. These technicians use their unique address to sign transactions, each representing an operation on a unit. 
+## Scope for the final project to complete the course
+I have decided to focus on the main issue: the registration of maintenance operations on units by qualified technicians working for approved agencies. 
+
+**Professional Offices**, created by autorized parties, employ **technicians** that are identified by their own public address on the blockchain. These technicians use their address to sign transactions, each representing an operation on a unit. 
 
 For **product units** (maintained by technicians), we need to store a few properties that identifies a unit (manufacturer, product model and unique identifiers), the owner of the unit, as well a list of operations completed by technicians. For each **Operation**, we first need verify that the technician's address (who signes the transaction) is known and valid, then store some data about the operation : category (setup, repair, ...) and a hash of the report (an exploitable json file stored on IPFS/SWARM). Finally, we should authorize a certified operator to set a status in case of later control of the operation.
 
-As we can consider that there is no trusted area between all actors involved, a public Ethereum blockchain would the natural choice. Now we can also consider being trutsful a consortium blockchain where nodes are run by enought parties having opposed objectivs (trust could be enforced by writting to a smart contract on the public blockchain, the blocks root hashes of the consortium blockchain).
+I have implemented a simple client application (React & Rimble) to demonstrate interactions with the blockchain and one of my smart contracts. For more convenience, the associated files (sources and configuration) are included the present repository. 
 
-As an exemple, I have implemented a sample client application (React & Rimble) to demonstrate interactions with the blockchain itself and a contract. For more convenience, the associated files (sources and configuration) are included the present repository. 
-
-## Beyond this simple MVP
-List of improvments :
-* Implement a client with 
+## Beyond this scope
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
 * It would be convenient to reference Manufacturers and products, especially for manufacturers to gather statistics about their products.
 * A scoring could be calculated for each unit as an indicator of the level of quality of the maintainance of a unit. The calculation rules would vary from one product to an other. This indicator could be used for instance by insurers/owners to negociate the insurance premium for a contract, or by buyers to estimate the value of a second hand unit.
-* Create a srepository for each client application
+* Develop several DApp (for the different actors) with dedicated GIT repositories
+* Integrate with IPFS and off-chain applications (legacy systems, data analysis, search functionalities, ...)
+* Messaging protocol (Whisper) could be used by manufacturer to alert units owners about technical issues, or by insurer for different pruposes. 
 
 ## Questions
 - Does it make sence to use uint8, uint16, ... instead of uint32 to save space ?
