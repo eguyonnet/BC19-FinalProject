@@ -16,7 +16,8 @@ we will use the one provided by the OpenZeppelin Contracts Ethereum Package. An 
 This is a more secure code distribution mechanism and greatly reducing your gas deployment costs
 
 ### Factory
-See a way to prevent from creating Unit instances outside the factory
+See a way to prevent from creating Unit instances outside the factory, the following could help :
+http://eips.ethereum.org/EIPS/eip-1167 (This code (intended to be called from an implementor factory contract) will allow you to install a master copy of a contract, then easily (cheaply) create clones with separate state. The deployed bytecode just delegates all calls to the master contract address)
 
 ### Upgradability (PROXY through DELEGATE CALL)
 transparent proxy pattern
