@@ -29,16 +29,15 @@ For **product units** (maintained by technicians), we need to store a few proper
 
 As we can consider that there is no trusted area between all actors involved, a public Ethereum blockchain would the natural choice. Now we can also consider being trutsful a consortium blockchain where nodes are run by enought parties having opposed objectivs (trust could be enforced by writting to a smart contract on the public blockchain, the blocks root hashes of the consortium blockchain).
 
-Project is built using Zepkit, a truffle box containing React, ZeppelinOS, OpenZeppelin, Truffle and Infura.
-This brings :
-- Upgradeable smart contracts with ZeppelinOS (using proxy pattern).
-- React &  Rimble to build usable and friendly interfaces.
+As an exemple, I have implemented a sample client application (React & Rimble) to demonstrate interactions with the blockchain itself and a contract. For more convenience, the associated files (sources and configuration) are included the present repository. 
 
 ## Beyond this simple MVP
 List of improvments :
+* Implement a client with 
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
 * It would be convenient to reference Manufacturers and products, especially for manufacturers to gather statistics about their products.
 * A scoring could be calculated for each unit as an indicator of the level of quality of the maintainance of a unit. The calculation rules would vary from one product to an other. This indicator could be used for instance by insurers/owners to negociate the insurance premium for a contract, or by buyers to estimate the value of a second hand unit.
+* Create a srepository for each client application
 
 ## Questions
 - Does it make sence to use uint8, uint16, ... instead of uint32 to save space ?
