@@ -39,15 +39,13 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
   - npm install -g openzeppelin-eth
   - npm install -g zos-lib
 
-truffle test
-
 npm install --global @openzeppelin/cli
 openzeppelin init
 openzeppelin link @openzeppelin/contracts-ethereum-package@2.2.0
 openzeppelin unpack starter
 npm run start
 
-CI  available : https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
+CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
 
 ## Beyond this scope
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
