@@ -6,14 +6,16 @@ For managing **Professional Offices**, I have created two smart contracts in ord
 For managing **product units**, I was at first about to consider each unit as a non-fungible token by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a contrat per unit. In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit (represented by a QR code sticked on the unit).
 
 ### Inheritance
-
+Inheritance is extensively used.
 
 ### Access control
 Both the ProfessionalOfficesImplV1 and the UnitFactory contracts inherit from the *WhitelistAdminRole* from **OpenZeppelin** (https://docs.openzeppelin.com/openzeppelin/) in order to limit access to certain methods.
 
+### Emergency stop
+The UnitFactory contract inherites from the Pausable contract from **OpenZeppelin**. Before creating a new Unit, a modifier checks if the contract has not been paused (by authorized addresses).
 
 ### EVM package
-
+All the contracts
 we will use the one provided by the OpenZeppelin Contracts Ethereum Package. An Ethereum Package is a set of contracts set up to be easily included in an OpenZeppelin SDK project, with the added bonus that the contracts' code is already deployed in the Ethereum network. 
 This is a more secure code distribution mechanism and greatly reducing your gas deployment costs
 
