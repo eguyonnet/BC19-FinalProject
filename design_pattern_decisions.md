@@ -25,3 +25,10 @@ transparent proxy pattern
 This brings :
 - Upgradeable smart contracts with ZeppelinOS (using proxy pattern).
 - React &  Rimble to build usable and friendly interfaces.
+
+
+## Questions
+- Does it make sence to use uint8, uint16, ... instead of uint32 to save space ?
+- Is it better to use bytes32 instead of string is length if limited ?
+- Should I manage Manufacturers and products with different contracts ? 
+- I wish I could use pragma "experimental ABIEncoderV2;" in order to return structs !! but as far as I know, web3.js could not deal with it
