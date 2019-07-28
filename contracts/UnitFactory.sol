@@ -1,7 +1,9 @@
 pragma solidity ^0.5.8;
 
-import "openzeppelin-eth/contracts/ownership/Ownable.sol";
-import "openzeppelin-eth/contracts/lifecycle/Pausable.sol";
+//import "openzeppelin-eth/contracts/ownership/Ownable.sol";
+//import "openzeppelin-eth/contracts/lifecycle/Pausable.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "./ProfessionalOfficesImplV1.sol";
 
 /**
@@ -37,7 +39,7 @@ contract UnitFactory is WhitelistAdminRole, Pausable {
         return (units[_index]);
     }
 
-    /// @notice create a new unit and append it's address to the index list - Impleents an emergency stop pattern
+    /// @notice create a new unit and append it's address to the index list - Use of an emergency stop pattern
     /// @param _modelNumber unit model identifier
     /// @param _modelName unit model name
     /// @param _manufacturerName unit manufacturer name

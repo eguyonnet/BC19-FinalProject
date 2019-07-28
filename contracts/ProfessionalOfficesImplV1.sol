@@ -1,8 +1,8 @@
 pragma solidity ^0.5.8;
 //pragma experimental ABIEncoderV2;
 
-import "openzeppelin-eth/contracts/access/roles/WhitelistAdminRole.sol";
-//import "./openzeppelin/access/roles/WhitelistAdminRole.sol";
+//import "openzeppelin-eth/contracts/access/roles/WhitelistAdminRole.sol";
+import "openzeppelin-solidity/contracts/access/roles/WhitelistAdminRole.sol";
 import "./ProfessionalOfficesStorage.sol";
 
 /**
