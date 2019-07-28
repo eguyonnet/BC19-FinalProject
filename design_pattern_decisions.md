@@ -1,14 +1,16 @@
-## Design decisions & patterns
+## Design choices & patterns
 For managing **Professional Offices**, I have created two smart contracts in order to ease future developements :
 * *ProfessionalOfficesStorage.sol*, the storage contract (the data)
 * *ProfessionalOfficesImplV1.sol*, the business logic contract (modifiers, functions and events) which inherits from the storage contract
 
-For managing **product units**, I was at first about to represent each unit as a non-fungible token, by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a contrat per unit. In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit (represented by a QR code).
+For managing **product units**, I was at first about to consider each unit as a non-fungible token by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a contrat per unit. In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit (represented by a QR code sticked on the unit).
 
 ### Inheritance
-Both the ProfessionalOfficesImplV1 and the UnitFactory contracts inherit from the *WhitelistAdminRole* from **OpenZeppelin** (https://docs.openzeppelin.com/openzeppelin/) in order to limit access to certain methods.
+
 
 ### Access control
+Both the ProfessionalOfficesImplV1 and the UnitFactory contracts inherit from the *WhitelistAdminRole* from **OpenZeppelin** (https://docs.openzeppelin.com/openzeppelin/) in order to limit access to certain methods.
+
 
 ### EVM package
 
@@ -16,7 +18,8 @@ we will use the one provided by the OpenZeppelin Contracts Ethereum Package. An 
 This is a more secure code distribution mechanism and greatly reducing your gas deployment costs
 
 ### Factory
-See a way to prevent from creating Unit instances outside the factory
+See a way to prevent from creating Unit instances outside the factory, the following could help :
+http://eips.ethereum.org/EIPS/eip-1167 (This code (intended to be called from an implementor factory contract) will allow you to install a master copy of a contract, then easily (cheaply) create clones with separate state. The deployed bytecode just delegates all calls to the master contract address)
 
 ### Upgradability (PROXY through DELEGATE CALL)
 transparent proxy pattern
