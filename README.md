@@ -29,7 +29,22 @@ I have decided to focus on the main issue: the registration of maintenance opera
 
 For **product units** (maintained by technicians), we need to store a few properties that identifies a unit (manufacturer, product model and unique identifiers), the owner of the unit, as well a list of operations completed by technicians. For each **Operation**, we first need verify that the technician's address (who signes the transaction) is known and valid, then store some data about the operation : category (setup, repair, ...) and a hash of the report (an exploitable json file stored on IPFS/SWARM). Finally, we should authorize a certified operator to set a status in case of later control of the operation.
 
-I have implemented a simple client application (React & Rimble) to demonstrate interactions with the blockchain and one of my smart contracts. For more convenience, the associated files (sources and configuration) are included the present repository. 
+I have implemented a simple client application (React & Rimble) to demonstrate interactions with the blockchain and one of my smart contracts (including read/write method calls as well as catching reverted calls). For more convenience, the associated files (sources and configuration) are included the present repository. 
+
+## Setup environement
+  - npm install -g ganache-cli
+  - npm install -g truffle@5.0.4
+  - npm install -g solc@0.5.10
+  - npm install -g openzeppelin-eth
+  - npm install -g zos-lib
+
+truffle test
+
+npm install --global @openzeppelin/cli
+openzeppelin init
+openzeppelin link @openzeppelin/contracts-ethereum-package@2.2.0
+openzeppelin unpack starter
+npm run start
 
 ## Beyond this scope
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
