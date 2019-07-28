@@ -27,15 +27,6 @@ The first version of the solution intends to solve the main issue: the registrat
 
 For **product units** (maintained by technicians), we need to store a few properties that identifies a unit (manufacturer, product model and unique identifiers), the owner of the unit, as well a list of operations completed by technicians. For each **Operation**, we first need verify that the technician's address (who signes the transaction) is known and valid, then store some data about the operation : category (setup, repair, ...) and a hash of the report (an exploitable json file stored on IPFS/SWARM). Finally, we should authorize a certified operator to set a status in case of later control of the operation.
 
-## Implementation
-For managing **Professional Offices**, I have created two smart contracts (to ease later upgrades) :
-* *ProfessionalOfficesStorage.sol*, the storage contract
-* *ProfessionalOfficesImplV1.sol*, the business logic contract which inherits from the storage contract
-
-For managing **product units**, at first I was about to represent each unit as a non-fungible token, by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a contrat per unit. In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit.
-
-Both the ProfessionalOfficesImplV1 and the UnitFactory contracts inherit from the *WhitelistAdminRole* from **OpenZeppelin** (included as an EVM package) in order to limit access to certain methods.
-
 As we can consider that there is no trusted area between all actors involved, a public Ethereum blockchain would the natural choice. Now we can also consider being trutsful a consortium blockchain where nodes are run by enought parties having opposed objectivs (trust could be enforced by writting to a smart contract on the public blockchain, the blocks root hashes of the consortium blockchain).
 
 Project is built using Zepkit, a truffle box containing React, ZeppelinOS, OpenZeppelin, Truffle and Infura.
