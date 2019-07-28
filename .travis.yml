@@ -3,6 +3,7 @@ node_js:
   - "10"
 
 before_script:
+  - npm install -g npm@6.10.1
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
