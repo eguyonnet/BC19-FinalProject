@@ -39,11 +39,11 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
   - npm install -g openzeppelin-eth
   - npm install -g zos-lib
 
-npm install --global @openzeppelin/cli
-openzeppelin init
-openzeppelin link @openzeppelin/contracts-ethereum-package@2.2.0
-openzeppelin unpack starter
-npm run start
+- npm install --global @openzeppelin/cli
+- openzeppelin init
+- openzeppelin link @openzeppelin/contracts-ethereum-package@2.2.0
+- openzeppelin unpack starter
+- npm run start
 
 CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
 
