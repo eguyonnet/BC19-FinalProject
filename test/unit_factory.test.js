@@ -10,7 +10,7 @@ contract('UnitFactory', function(accounts) {
     const alice = accounts[1]
     const bob = accounts[2]
 
-    let proOfficesInstance;
+    let proOfficesInstance
     let factoryInstance
 
     beforeEach(async () => {
@@ -22,6 +22,12 @@ contract('UnitFactory', function(accounts) {
     })
 
     describe("UnitFactory", async() => {
+        describe("Setup", async() => {
+            it("owner should be a white listed admin", async() => {
+                const isWhiteListAdmin = await factoryInstance.isWhitelistAdmin(owner)
+                assert.equal(isWhiteListAdmin, true, "Owner is not a white listed admin")
+            })
+        })
         describe("createUnit", async() => {
             it("Should create unit and emit event when not paused", async()=>{
                 const tx = await factoryInstance.createUnit(web3.utils.stringToHex("VBA2428RT"), web3.utils.stringToHex("VIVADENS 24/28"), web3.utils.stringToHex("DE DIETRICH"), {from: alice})
