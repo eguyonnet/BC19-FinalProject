@@ -3,13 +3,12 @@ node_js:
   - "10"
 
 before_script:
-  - npm install -g npm@6.10.1
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
-  - npm install -g openzeppelin-eth
+  #- npm install -g openzeppelin-eth
   #- npm install -g zos-lib
-  #- npm install openzeppelin-solidity
+  - npm install openzeppelin-solidity
 
 script:
   # delete provided testing files
