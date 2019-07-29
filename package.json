@@ -2,7 +2,7 @@
   "name": "BC19-FinalProject",
   "version": "1.0.0",
   "description": "Final project Bootcamp",
-  "repository": { 
+  "repository": {
     "type": "git",
     "url": "https://github.com/eguyonnet/BC19-FinalProject.git"
   },
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "openzeppelin-solidity": "^2.3.0"
   }
 }
