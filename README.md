@@ -36,14 +36,16 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
-  - npm install -g openzeppelin-eth
-  - npm install -g zos-lib
+  
+  From the root of the project :
+  - npm install openzeppelin-solidity
 
 - npm install --global @openzeppelin/cli
 - openzeppelin init
 - openzeppelin link @openzeppelin/contracts-ethereum-package@2.2.0
 - openzeppelin unpack starter
-- npm run start
+  From the 'client' directory launch the followinf command to start en http server and launch the Dapp :
+  - npm run start
 
 CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
 
