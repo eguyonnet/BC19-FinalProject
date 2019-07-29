@@ -39,6 +39,7 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
   
   From the root of the project :
   - npm install openzeppelin-solidity
+  - npm install dotenv
 
 - npm install --global @openzeppelin/cli
 - openzeppelin init
