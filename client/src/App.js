@@ -46,10 +46,8 @@ class App extends Component {
         const isMetaMask = web3.currentProvider.isMetaMask;
         let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]) : web3.utils.toWei('0');
         balance = web3.utils.fromWei(balance, 'ether');
-
         let deployedNetwork = null;
         let instancePO = null;
-        //console.log(ProfessionalOffices.networks);
         if (ProfessionalOffices.networks) {
           deployedNetwork = ProfessionalOffices.networks[networkId.toString()];
           if (deployedNetwork) {
@@ -59,11 +57,10 @@ class App extends Component {
         
         if (instancePO) {
           this.setState({ web3, ganacheAccounts, currentAccount: accounts[0], balance, networkId, networkType, isMetaMask, contractPO: instancePO });
-          this.refreshValues(instancePO);
+          this.refreshValues();
         } else {
           this.setState({ web3, ganacheAccounts, currentAccount: accounts[0], balance, networkId, networkType, isMetaMask });
         }
-
       }
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -78,47 +75,49 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instancePO) => {
-    if (instancePO) {
-      this.getPOCount();
+  async refreshValues() {
+    if (this.state.contractPO) {
+      await this.getPOCount();
+      this.getPOs();
     }
   }
 
   getPOCount = async () => {
     // Get the value from the contract to prove it worked.
     const response = await this.state.contractPO.methods.getProfessionalOfficeCount().call();
-    // Update state with the result.
+    // Update state with the result
     this.setState({ countPO: response });
   };
 
   getPOs = async () => {
-    var array = [];
-    for (var i = 0; i < this.state.countPO; i++) {
+    let array = [];
+    for (let i = 0; i < this.state.countPO; i++) {
       const result = await this.state.contractPO.methods.getProfessionalOffice(i+1).call();
       array[i] = result;
     }
     this.setState({ listPO: array });
   }
 
-  addPO = async (name, ownerAddress, techAddress) => {
-    try {
-      await this.state.contractPO.methods.addProfessionalOffice(name, ownerAddress, techAddress).send({ from: this.state.currentAccount });
-      this.getPOCount();
-      this.setState({ listPO: [] });
-    } catch (e) {
-      var str = "VM Exception while processing transaction: revert";
-      var pos = e.message.search(str);
+  addPO = (name, ownerAddress, techAddress) => new Promise((resolve, reject) => {
+    this.state.contractPO.methods.addProfessionalOffice(name, ownerAddress, techAddress).send({ from: this.state.currentAccount }).then(
+      result => {
+        resolve('SUCCESS');
+    }).catch((e) => {
+      let str = "VM Exception while processing transaction: revert";
+      let msg = "";
+      let pos = e.message.search(str);
       if (pos >= 0) {
-        console.log(e.message.substring((pos + str.length + 1), e.message.length));
+        msg += e.message.substring((pos + str.length + 1), e.message.length)
       }
-    }
-  };
+      reject(msg);
+    });
+  })
 
   renderLoader() {
     return (
       <div className={styles.loader}>
         <Loader size="80px" color="red" />
-        <h3> Loading Web3, accounts, and contract...</h3>
+        <h3>Loading Web3, accounts, and contract...</h3>
         <p> Unlock your metamask </p>
       </div>
     );
@@ -134,12 +133,13 @@ class App extends Component {
         <Flex>
           <Box p={3} width={1 / 2}>
             <DisplayProfOffice
-              list={this.getPOs}
+              refreshList={this.getPOs}
               {...this.state} />
           </Box>
           <Box p={3} width={1 / 2}>
             <AddProfOffice 
               add={this.addPO}
+              refreshAll={this.refreshValues}
               {...this.state} />
           </Box>
         </Flex>

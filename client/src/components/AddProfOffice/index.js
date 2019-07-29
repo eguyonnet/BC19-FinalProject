@@ -6,7 +6,7 @@ export default class AddProfOffice extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { validated: false, name: '', ownerAddress: '', techAddress: ''};
+        this.state = { validated: false, name: 'CrashTest', ownerAddress: '0x1Cc90033F594E93B915FEd4E310Df5Ab98ac9271', techAddress: '0x50eEd4799e3b963C45c122db3F22Fa67791722FE'};
     
         this.handleNameValidation = this.handleNameValidation.bind(this);
         this.handleOwnerAddressValidation = this.handleOwnerAddressValidation.bind(this);
@@ -31,16 +31,14 @@ export default class AddProfOffice extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        try {
-            this.props.add(this.props.web3.utils.stringToHex(this.state.name), [this.state.ownerAddress], [this.state.techAddress]);
-            this.setState({ validated: true });
-            window.toastProvider.addMessage("Adding new professionnal office", {
-                secondaryMessage: "Successful", variant: "success"
+            this.props.add(this.props.web3.utils.stringToHex(this.state.name), [this.state.ownerAddress], [this.state.techAddress]).then((success) => {
+                this.setState({ validated: true });
+                window.toastProvider.addMessage("Adding new professionnal office", { secondaryMessage: "Successful", variant: "success" });
+                this.props.refreshAll();
+            }).catch((error) => {
+                window.toastProvider.addMessage(error, { secondaryMessage: "Error", variant: "failure" });
             });
-        } catch (e) {
-            console.log("ehhhhh");
-        }
-    }hhhh
+    }
 
     render()  {
         return (

@@ -1,7 +1,6 @@
 pragma solidity ^0.5.8;
-//pragma experimental ABIEncoderV2;
 
-//import "openzeppelin-eth/contracts/access/roles/WhitelistAdminRole.sol";
+//pragma experimental ABIEncoderV2;
 import "openzeppelin-solidity/contracts/access/roles/WhitelistAdminRole.sol";
 import "./ProfessionalOfficesStorage.sol";
 
@@ -43,8 +42,8 @@ contract ProfessionalOfficesImplV1 is ProfessionalOfficesStorage, WhitelistAdmin
 		_;
 	}
 
+    /// @notice constructor
    	constructor() public { 
-		//_addWhitelistAdmin(msg.sender);
     }
 
     /// @notice Get the number of professionnal offices

@@ -1,8 +1,5 @@
 pragma solidity ^0.5.8;
 
-//import "openzeppelin-eth/contracts/ownership/Ownable.sol";
-//import "openzeppelin-eth/contracts/access/roles/WhitelistAdminRole.sol";
-//import "openzeppelin-eth/contracts/lifecycle/Pausable.sol";
 import "openzeppelin-solidity/contracts/access/roles/WhitelistAdminRole.sol";
 import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "./ProfessionalOfficesImplV1.sol";
@@ -23,10 +20,7 @@ contract UnitFactory is WhitelistAdminRole, Pausable {
     event UnitCreated(address indexed unitAddress, address indexed owner, bytes32 indexed modelNumber, bytes32 modelName, bytes32 manufacturerName);
 
     /// @notice constructor
-    //function initialize() public initializer {
     constructor() public { 
-		//_addWhitelistAdmin(msg.sender);
-        //_addPauser(msg.sender);
     }
 
     /// @notice returns number of units created
