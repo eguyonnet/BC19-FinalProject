@@ -19,7 +19,6 @@ contract('Unit', function(accounts) {
     let unitInstance
 
     beforeEach(async () => {
-        //proOfficesInstance = await ProfessionalOffices.deployed({from: admin})
         proOfficesInstance = await ProfessionalOffices.new({from: admin})
         // Add a valid professional office with associated worker
         await proOfficesInstance.addProfessionalOffice(web3.utils.stringToHex("RepairMeGas"), [poOwner], [professional], {from: admin})

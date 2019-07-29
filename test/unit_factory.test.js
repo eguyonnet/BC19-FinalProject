@@ -15,8 +15,6 @@ contract('UnitFactory', function(accounts) {
 
     beforeEach(async () => {
         proOfficesInstance = await ProfessionalOffices.deployed()
-        //console.log(proOfficesInstance.address);
-        //await factoryInstance.initialize({ from: owner })
         factoryInstance = await UnitFactory.new({from: owner})
         await factoryInstance.setProfessionnalsOffices(proOfficesInstance.address, {from: owner})
     })
@@ -33,6 +31,9 @@ contract('UnitFactory', function(accounts) {
                 const tx = await factoryInstance.createUnit(web3.utils.stringToHex("VBA2428RT"), web3.utils.stringToHex("VIVADENS 24/28"), web3.utils.stringToHex("DE DIETRICH"), {from: alice})
                 //console.log(tx.logs[0])
                 assert.equal(tx.logs[0].event == "UnitCreated", true, 'Creating a Unit should emit a UnitCreated event')
+            })
+            it("Alice is not allow to pause the factory", async()=>{
+                await catchRevert(factoryInstance.pause({from: alice}))
             })
             it("Should fail when factory is paused", async()=>{
                 await factoryInstance.pause({from: owner})
