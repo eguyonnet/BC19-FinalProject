@@ -1,12 +1,13 @@
 #Migration to ROPSTEN (through INFURA)
 
 ##Links to Etherscan
-ProfessionalOfficesImplV1 :
-https://ropsten.etherscan.io/tx/0x2cba00b14704e73c6a18cf09e31e554331b8a4f74cd04d5404b30b5d4369c31f
 
-https://ropsten.etherscan.io/tx/0xb3ef4d69af7e713f16849e702b13d354d27df8a2dce9ef80863311ba716b3b35
+ProfessionalOfficesImplV1 : https://ropsten.etherscan.io/tx/0x2cba00b14704e73c6a18cf09e31e554331b8a4f74cd04d5404b30b5d4369c31f
+
+UnitFactory : https://ropsten.etherscan.io/tx/0xb3ef4d69af7e713f16849e702b13d354d27df8a2dce9ef80863311ba716b3b35
 
 ##Detailed informations
+
 $ truffle migrate --network ropsten
 
 Compiling your contracts...
