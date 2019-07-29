@@ -7,7 +7,7 @@ export default class Web3Info extends Component {
     const { networkId, networkType, currentAccount, balance, isMetaMask } = this.props;
     return (
       <div className={styles.web3}>
-        <div width="25%">
+        <div width="25%" align="left">
           <p>Network: <b>{networkId} - {networkType}</b></p>          
           <p>Using Metamask: <b>{isMetaMask ? 'YES' : 'NO'}</b></p>
         </div>
@@ -17,7 +17,7 @@ export default class Web3Info extends Component {
             <Blockie opts={{ seed: currentAccount, size: 15, scale: 3 }} />
           </div>
         </div>
-        <div width="25%">
+        <div width="25%" align="right">
           <p>ETH balance: <b>{balance}</b></p>
         </div>
       </div>
