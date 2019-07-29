@@ -2,6 +2,10 @@
   "name": "BC19-FinalProject",
   "version": "1.0.0",
   "description": "Final project Bootcamp",
+  "repository": { 
+    "type": "git",
+    "url": "https://github.com/eguyonnet/BC19-FinalProject.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "openzeppelin-solidity": "^2.3.0",
-    "web3": "^1.2.0"
+    "openzeppelin-solidity": "^2.3.0"
   }
 }

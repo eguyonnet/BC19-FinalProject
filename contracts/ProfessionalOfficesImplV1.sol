@@ -44,7 +44,7 @@ contract ProfessionalOfficesImplV1 is ProfessionalOfficesStorage, WhitelistAdmin
 	}
 
    	constructor() public { 
-		_addWhitelistAdmin(msg.sender);
+		//_addWhitelistAdmin(msg.sender);
     }
 
     /// @notice Get the number of professionnal offices
