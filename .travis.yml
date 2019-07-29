@@ -6,15 +6,11 @@ before_script:
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
-  #- npm install -g openzeppelin-eth
-  #- npm install -g zos-lib
   - npm install openzeppelin-solidity
 
 script:
   # delete provided testing files
   #- rm ./test/professional_offices.test.js
-  #- rm ./test/unit_factory.test.js
-  #- rm ./test/unit.test.js
   # get the official testing file and move into test dir
   #- git clone https://github.com/eguyonnet/BC19-FinalProject.git 
   #- mv ./e9ec0d8d6c53b56ca9673cfa139b5644/eventTickets.test.js ./test/eventTickets.test.js
