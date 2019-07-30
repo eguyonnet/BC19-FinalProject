@@ -7,9 +7,10 @@ import "./ProfessionalOfficesImplV1.sol";
 /**
  *	@title  Contract that instanciates Unit contracts and keeps a reference of the units created
  * 	@author E. Guyonnet
- *  @notice When the factory creates a new Unit, it provides the child with :
- *                  - the msg.sender address that will be the owner of the Unit (as the msg.sender for the Unit is the Factory contract address) 
- *                  - the address of the Professional Offices business logic contract (child with call this contract to verify technician for operation)        
+ *  @notice When the factory creates a new Unit, it provides the child with the msg.sender address that calls the factory and
+ *          that will own the Unit (as the msg.sender for the Unit is the Factory contract address) 
+ *          The address of the Professional Offices business logic contract is known by the factory which exposes
+ *          a method to the child unit wukk call to verify technician for operation
  */
 contract UnitFactory is WhitelistAdminRole, Pausable { 
     
@@ -40,7 +41,7 @@ contract UnitFactory is WhitelistAdminRole, Pausable {
     /// @param _manufacturerName unit manufacturer name
     function createUnit(bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName) whenNotPaused() external {
         require(proOfficesContract != address(0), "Invalid ProfessionnalsOffices contract address");
-        address child = address(new Unit(msg.sender, _modelNumber, _modelName, _manufacturerName, proOfficesContract));
+        address child = address(new Unit(msg.sender, _modelNumber, _modelName, _manufacturerName));
         units.push(child);
         emit UnitCreated(child, msg.sender, _modelNumber, _modelName, _manufacturerName);
     }
@@ -49,6 +50,17 @@ contract UnitFactory is WhitelistAdminRole, Pausable {
     /// @param _contractAddress address of the ProfessionnalsOffices deployed contract
     function setProfessionnalsOffices(address _contractAddress) external onlyWhitelistAdmin {
         proOfficesContract = _contractAddress;
+    }
+
+    /// @notice Check if a technician (who wants to sign a transaction when completing a maintainance operation) is a valid one
+    /// @dev This function is called by the Units (created by the factory)
+    /// @param _technicianAddress address of the technician 
+    /// @return bool - 'true' if technician is activ an a professional office 
+    function isActivTechnician(address _technicianAddress) external view returns(bool) {
+        // Alternativ : bytes memory data = abi.encodeWithSignature("isActivTechnician(address)", msg.sender);
+        // https://ethereum.stackexchange.com/questions/30383/difference-between-call-on-external-contract-address-function-and-creating-contr
+        ProfessionalOfficesImplV1 po = ProfessionalOfficesImplV1(proOfficesContract);
+        return po.isActivTechnician(_technicianAddress);
     }
 
 }
@@ -60,11 +72,12 @@ contract UnitFactory is WhitelistAdminRole, Pausable {
  */
 contract Unit {
 
+    address private parentFactory;      // address of the factory that created this Unit instance
     address private owner;
     bytes32 private modelNumber;
     bytes32 private modelName;
     bytes32 private manufacturerName;
-    uint8 private status;               // { Created = 1, InUse = 5, Destroyed = 10 }
+    uint8 private status;               // { Created = 1, InUse = 5, Destroyed = 10 } -> no ENUM !
 
     struct Operation {
         uint time;
@@ -75,10 +88,6 @@ contract Unit {
     }
 
     Operation[] private operations;
-
-    // https://ethereum.stackexchange.com/questions/30383/difference-between-call-on-external-contract-address-function-and-creating-contr
-    address private proOfficesContract;
-
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     event SetupOperationCompleted(uint256 operationIndex, address technician, bytes32 reportHash);
@@ -112,56 +121,63 @@ contract Unit {
     /// @param _modelNumber unit model identifier 
     /// @param _modelName unit model name 
     /// @param _manufacturerName unit manufacturer name 
-    /// @param _poc address of the ProfessionalOfficesImpl contract 
-    constructor(address _owner, bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName, address _poc) public {
+    constructor(address _owner, bytes32 _modelNumber, bytes32 _modelName, bytes32 _manufacturerName) public {
+        parentFactory = msg.sender;
         owner = _owner;
         manufacturerName = _manufacturerName;
         modelNumber = _modelNumber;
         modelName = _modelName;
         status = 1;
-        proOfficesContract = _poc;
     }
 
     // --------------------------------------------------
     // EXTERNAL VIEW
     // --------------------------------------------------
 
-    /// @notice returns version
+    /// @notice version of the contract
+    /// @return string version
     function getVersion() public pure returns (string memory) {
         return "1.0";
     }
 
-    /// @notice returns owner
+    /// @notice returns the owner of the unit
+    /// @return address
     function getOwner() external view returns(address) {
         return owner;
     }
 
-    /// @notice returns manufacturer name
+    /// @notice returns the manufacturer name
+    /// @return bytes32
     function getManufacturerName() external view returns(bytes32) {
         return manufacturerName;
     }
 
-    /// @notice returns product model number (unique)
+    /// @notice returns the product model number (unique)
+    /// @return bytes32
     function getModelNumber() external view returns(bytes32) {
         return modelNumber;
     }
 
     /// @notice returns model 'commercial' name
+    /// @return bytes32
     function getModelName() external view returns(bytes32) {
         return modelName;
     }
 
     /// @notice returns true if unit is in use
+    /// @return bool
     function isInUse() external view returns(bool) {
         return status == 5;
     }
 
-    /// @notice returns true is unit does not work anymore 
+    /// @notice returns true is unit does not work anymore
+    /// @return bool
     function isDestroyed() external view returns(bool) {
         return status == 10;
     }
 
     /// @notice returns number of operations completed
+    /// @return uint
     function getOperationsCount() external view returns(uint) {
         return operations.length;
     }
@@ -242,7 +258,7 @@ contract Unit {
     // PRIVATE UPDATE
     // --------------------------------------------------
 
-    /// @dev Transfers ownership of the contract to a new account (`newOwner`).
+    /// @dev Transfers ownership of the contract to a new account (`newOwner`)
     function _transferOwnership(address _newOwner) private {
         require(_newOwner != address(0), "Ownable: new owner is the zero address");
         owner = _newOwner;
@@ -251,8 +267,7 @@ contract Unit {
 
     /// @dev Create a new operation
     function _operate(uint16 _categoryId, bytes32 _reportHash) private returns (uint) {
-        // Alternativ : bytes memory data = abi.encodeWithSignature("isActivTechnician(address)", msg.sender);
-        ProfessionalOfficesImplV1 po = ProfessionalOfficesImplV1(proOfficesContract);
+        UnitFactory po = UnitFactory(parentFactory);
         require(po.isActivTechnician(msg.sender) == true, "Unknown or inactiv professional");
 
         operations.push(Operation({time: now, categoryId: _categoryId, technician: msg.sender, reportHash: _reportHash, statusCtrl: 0}));
@@ -263,7 +278,7 @@ contract Unit {
     }
 
     /// @dev Updates the control status of an operation
-    // TODO msg.sender should be a well known certification body
+    // TODO later improvment : msg.sender should be a well known certification body
     function _controlOperation(uint256 _index, uint8 _statusCtrl) private {
         require(_index >= 0 && _index < operations.length, "Invalid operation index");
         require(operations[_index].statusCtrl == 0, "Operation already controlled");
