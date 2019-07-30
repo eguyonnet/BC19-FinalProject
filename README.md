@@ -48,8 +48,10 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
 - openzeppelin unpack starter
   From the 'client' directory launch the following command to start en http server and launch the Dapp :
   - npm run start
+  -> it will automatically open a browser window at URL http://localhost:3000
 
 CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
+
 
 ## Beyond this scope
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
