@@ -33,14 +33,15 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
 
 ## Setup environment
 
+  First install the following components :
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
   
+  Now from the root of the project, install the dependencies (referenced in package-json) :
+  - npm install
+
   
-  From the root of the project :
-  - npm install openzeppelin-solidity
-  - npm install dotenv
 
 - npm install --global @openzeppelin/cli
 - openzeppelin init
