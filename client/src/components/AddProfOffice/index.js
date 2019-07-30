@@ -33,10 +33,10 @@ export default class AddProfOffice extends Component {
         event.preventDefault();
             this.props.add(this.props.web3.utils.stringToHex(this.state.name), [this.state.ownerAddress], [this.state.techAddress]).then((success) => {
                 this.setState({ validated: true });
-                window.toastProvider.addMessage("Adding new professionnal office", { secondaryMessage: "Successful", variant: "success" });
+                window.toastProvider.addMessage("Added", { variant: "success" });
                 this.props.refreshAll();
             }).catch((error) => {
-                window.toastProvider.addMessage(error, { secondaryMessage: "Error", variant: "failure" });
+                window.toastProvider.addMessage("Not added", { secondaryMessage: error, variant: "failure" });
             });
     }
 
@@ -59,7 +59,7 @@ export default class AddProfOffice extends Component {
                                 onChange={this.handleOwnerAddressValidation} 
                                 placeholder="e.g. 0xAc03BB73b6a9e108530AFf4Df5077c2B3D481e5A" />
                         </Form.Field>   
-                        <Form.Field label="Owner address" width={1}>
+                        <Form.Field label="Technician address" width={1}>
                             <Form.Input type="text" required width={1} 
                                 value={this.state.techAddress}
                                 onChange={this.handleTechAddressValidation} 

@@ -12,7 +12,7 @@ export default class DisplayProfOffice extends Component {
                         <h2>Professional offices</h2>
                     </Box>
                     <Box p={0} width={1 / 4}>
-                        <Button onClick={() => this.props.refreshList()} size="small">Refresh list</Button>
+                        <Button onClick={() => this.props.refreshAll()} size="small">Refresh list</Button>
                     </Box>
                 </Flex>
                 <Table>

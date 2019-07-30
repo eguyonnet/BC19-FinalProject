@@ -49,7 +49,12 @@ class App extends Component {
         let deployedNetwork = null;
         let instancePO = null;
         if (ProfessionalOffices.networks) {
-          deployedNetwork = ProfessionalOffices.networks[networkId.toString()];
+          if (networkId > 9999) {
+            // Developpent
+            deployedNetwork = ProfessionalOffices.networks["*"];
+          } else {
+            deployedNetwork = ProfessionalOffices.networks[networkId.toString()];
+          }
           if (deployedNetwork) {
             instancePO = new web3.eth.Contract(ProfessionalOffices.abi, deployedNetwork && deployedNetwork.address,);
           }
@@ -76,10 +81,10 @@ class App extends Component {
   }
 
   async refreshValues() {
-    if (this.state.contractPO) {
+    if (this.state && this.state.contractPO) {
       await this.getPOCount();
-      this.getPOs();
-    }
+      this.getPOList();
+    } 
   }
 
   getPOCount = async () => {
@@ -89,7 +94,7 @@ class App extends Component {
     this.setState({ countPO: response });
   };
 
-  getPOs = async () => {
+  getPOList = async () => {
     let array = [];
     for (let i = 0; i < this.state.countPO; i++) {
       const result = await this.state.contractPO.methods.getProfessionalOffice(i+1).call();
@@ -104,12 +109,14 @@ class App extends Component {
         resolve('SUCCESS');
     }).catch((e) => {
       let str = "VM Exception while processing transaction: revert";
-      let msg = "";
       let pos = e.message.search(str);
       if (pos >= 0) {
-        msg += e.message.substring((pos + str.length + 1), e.message.length)
+        reject(e.message.substring((pos + str.length + 1), e.message.length));
+      } else if (e.message.search("User denied transaction signature") > 0) {
+        reject("User denied transaction signature");
+      } else {
+        reject(e.message);  
       }
-      reject(msg);
     });
   })
 
@@ -133,7 +140,7 @@ class App extends Component {
         <Flex>
           <Box p={3} width={1 / 2}>
             <DisplayProfOffice
-              refreshList={this.getPOs}
+              refreshAll={this.refreshValues}
               {...this.state} />
           </Box>
           <Box p={3} width={1 / 2}>
