@@ -1,0 +1,107 @@
+#Migration to ROPSTEN (through INFURA)
+
+##Links to Etherscan
+
+ProfessionalOfficesImplV1 : https://ropsten.etherscan.io/tx/0x2cba00b14704e73c6a18cf09e31e554331b8a4f74cd04d5404b30b5d4369c31f
+
+UnitFactory : https://ropsten.etherscan.io/tx/0xb3ef4d69af7e713f16849e702b13d354d27df8a2dce9ef80863311ba716b3b35
+
+##Detailed informations
+
+$ truffle migrate --network ropsten
+
+Compiling your contracts...
+===========================
+> Compiling .\contracts\ManufacturersProductsStorage.sol
+> Compiling .\contracts\ProfessionalOfficesImplV1.sol
+> Compiling .\contracts\ProfessionalOfficesStorage.sol
+> Artifacts written to C:\Ethereum\BC19-FinalProject\build\contracts
+> Compiled successfully using:
+   - solc: 0.5.10+commit.5a6ea5b1.Emscripten.clang
+
+
+--- I have removed her the dry run ---
+
+Starting migrations...
+======================
+> Network name:    'ropsten'
+> Network id:      3
+> Block gas limit: 0x7a1200
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0x38bb2c4a5193657e5842388e4ed5e56380d5de8bea566448bc7f4b92b38f7ba7
+   > Blocks: 1            Seconds: 4
+   > contract address:    0x2c344Ef260Bd951B328FfDA9435A97Aa3332A23b
+   > block number:        6087945
+   > block timestamp:     1564439748
+   > account:             0xffe6FA5B45e5BB74e4dB2d7260eEAAe23c18E756
+   > balance:             0.99736259
+   > gas used:            263741
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00263741 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00263741 ETH
+
+
+2_ProfessionalOffices.js
+========================
+
+   Deploying 'ProfessionalOfficesImplV1'
+   -------------------------------------
+   > transaction hash:    0x2cba00b14704e73c6a18cf09e31e554331b8a4f74cd04d5404b30b5d4369c31f
+   > Blocks: 2            Seconds: 24
+   > contract address:    0x3e4a3f0390B8f42a7e7fe84425cbfF48caAb4532
+   > block number:        6087950
+   > block timestamp:     1564439778
+   > account:             0xffe6FA5B45e5BB74e4dB2d7260eEAAe23c18E756
+   > balance:             0.96462733
+   > gas used:            3231503
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.03231503 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.03231503 ETH
+
+
+3_UnitFactory.js
+================
+
+   Deploying 'UnitFactory'
+   -----------------------
+   > transaction hash:    0xb3ef4d69af7e713f16849e702b13d354d27df8a2dce9ef80863311ba716b3b35
+   > Blocks: 1            Seconds: 28
+   > contract address:    0x8714074757E687fB8370775e4FE7523f96779350
+   > block number:        6087955
+   > block timestamp:     1564439875
+   > account:             0xffe6FA5B45e5BB74e4dB2d7260eEAAe23c18E756
+   > balance:             0.93951792
+   > gas used:            2483918
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02483918 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.02483918 ETH
+
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.05979162 ETH
