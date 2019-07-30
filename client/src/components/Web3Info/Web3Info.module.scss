@@ -6,8 +6,52 @@
     border-bottom: 1px dotted #ffbe44;
     padding: 5px 5px;
     margin: 5px;
-    .sub {
-      display: flex;
+    font-family: "Source Sans Pro",-apple-system,sans-serif;
+    font-size: 14px;
+
+    p {
+      margin: 0px;
+    }
+    
+  .onefourth {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 25%;
+  }
+
+  .half {
+    width: 50%;
+    display: inherit;
+    padding-top: 2px;
+
+    &>div:nth-of-type(1) {
+      width: calc(100% - 50px);
+      label {
+        width: 100%; //display: -webkit-box;
+      }
     }
 
+    &>div:nth-of-type(2) {
+      width: 50px;
+    }
+
+
+    &>div {
+      display: -webkit-box;
+    }
+
+
+    canvas {
+      margin-top: 34px;
+      margin-left: 12px;
+    }
+  }
+
+
+  .qrcode {
+    width: 45px;
+    height: 45px;
+  }
+
 }
+

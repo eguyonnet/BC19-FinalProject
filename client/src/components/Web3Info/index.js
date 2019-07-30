@@ -7,17 +7,19 @@ export default class Web3Info extends Component {
     const { networkId, networkType, currentAccount, balance, isMetaMask } = this.props;
     return (
       <div className={styles.web3}>
-        <div width="25%" align="left">
+        <div className={styles.onefourth} align="left">
           <p>Network: <b>{networkId} - {networkType}</b></p>          
           <p>Using Metamask: <b>{isMetaMask ? 'YES' : 'NO'}</b></p>
         </div>
-        <div width="50%">
-          <div className={styles.sub}>
+        <div className={styles.half}>
+          <div>
             <PublicAddress address={currentAccount} />
-            <Blockie opts={{ seed: currentAccount, size: 15, scale: 3 }} />
-          </div>
+            </div>
+            <div>
+              <Blockie opts={{ sefed: currentAccount, size: 15, scale: 3 }} className={styles.qrcode} />
+            </div>
         </div>
-        <div width="25%" align="right">
+        <div className={styles.onefourth} align="right">
           <p>ETH balance: <b>{balance}</b></p>
         </div>
       </div>
