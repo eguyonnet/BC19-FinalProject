@@ -33,26 +33,28 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
 
 ## Setup environment
 
-  First install the following components :
+  ### Requirements
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
   
-  Now from the root of the project, install the dependencies (referenced in package-json) :
+  Download my project to a local drive (https://github.com/eguyonnet/BC19-FinalProject.git)
+
+  ### Smart contracts
+  From the root of the project, install the dependencies (referenced in package-json) :
   - npm install
-
   
+  Once you have ganache running, you can test the smart contracts and migrate them :
+  - truffle test
+  - truffle migrate
 
-- npm install --global @openzeppelin/cli
-- openzeppelin init
-- openzeppelin link @openzeppelin/contracts-ethereum-package@2.2.0
-- openzeppelin unpack starter
-  From the 'client' directory launch the following command to start en http server and launch the Dapp :
+  CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
+
+  ### Dapp
+  From the client directory, install the dependencies (referenced in package-json) :
+  - npm install
+  Start an http server and launch the Dapp (it will automatically open a browser window at URL http://localhost:3000):
   - npm run start
-  -> it will automatically open a browser window at URL http://localhost:3000
-
-CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
-
 
 ## Beyond this scope
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
