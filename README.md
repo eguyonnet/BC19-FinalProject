@@ -31,11 +31,12 @@ For **product units** (maintained by technicians), we need to store a few proper
 
 I have implemented a simple client application (React & Rimble) to demonstrate interactions with the blockchain and one of my smart contracts (including read/write method calls as well as catching reverted calls). For more convenience, the associated files (sources and configuration) are included the present repository. 
 
-## Setup environement
+## Setup environment
 
   - npm install -g ganache-cli
   - npm install -g truffle@5.0.4
   - npm install -g solc@0.5.10
+  
   
   From the root of the project :
   - npm install openzeppelin-solidity
@@ -45,7 +46,7 @@ I have implemented a simple client application (React & Rimble) to demonstrate i
 - openzeppelin init
 - openzeppelin link @openzeppelin/contracts-ethereum-package@2.2.0
 - openzeppelin unpack starter
-  From the 'client' directory launch the followinf command to start en http server and launch the Dapp :
+  From the 'client' directory launch the following command to start en http server and launch the Dapp :
   - npm run start
 
 CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
