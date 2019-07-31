@@ -1,5 +1,5 @@
 const BN = web3.utils.BN
-const ProfessionalOffices = artifacts.require('./ProfessionalOfficesImplV1.sol')
+const ProfessionalOffices = artifacts.require('ProfessionalOfficesImpl')
 const UnitFactory = artifacts.require('UnitFactory')
 const Unit = artifacts.require("Unit")
 const catchRevert = require("./exceptionsHelpers.js").catchRevert
