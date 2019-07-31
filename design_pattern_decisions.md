@@ -9,6 +9,8 @@ For managing **product units**, I was at first about to consider each unit as a 
 
 In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit (represented by a QR code sticked on the unit).
 
+You will also see in the code that I am not using ENUM. Using ENUM, when upgrading your contract, you will not be able to insert new values, but just add new values to the existing ones, which could be a problem in some cases (when they need to follow a logical order).
+
 ## Inheritance pattern
 Inheritance is extensively used.
 
