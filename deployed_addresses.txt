@@ -99,3 +99,9 @@ Starting migrations...
    > Saving artifacts
    -------------------------------------
    > Total cost:          0.02551866 ETH
+
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.0604711 ETH
