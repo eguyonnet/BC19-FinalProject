@@ -30,7 +30,7 @@ class App extends Component {
     try {
       
       let ProfessionalOffices = {};
-      ProfessionalOffices = require("../../contracts/ProfessionalOfficesImplV1.sol");
+      ProfessionalOffices = require("../../contracts/ProfessionalOfficesImpl.sol");
 
       const isProd = process.env.NODE_ENV === 'production';
       if (!isProd) {

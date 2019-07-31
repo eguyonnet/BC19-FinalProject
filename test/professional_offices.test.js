@@ -1,8 +1,8 @@
 let BN = web3.utils.BN
-let ProfessionalOfficesImplV1 = artifacts.require('ProfessionalOfficesImplV1')
+let ProfessionalOfficesImpl = artifacts.require('ProfessionalOfficesImpl')
 let catchRevert = require("./exceptionsHelpers.js").catchRevert
 
-contract('ProfessionalOfficesImplV1', function(accounts) {
+contract('ProfessionalOfficesImpl', function(accounts) {
 
     const owner = accounts[0]
     const alice = accounts[1]
@@ -13,7 +13,7 @@ contract('ProfessionalOfficesImplV1', function(accounts) {
     let proOfficesInstance
 
     beforeEach(async () => {
-        proOfficesInstance = await ProfessionalOfficesImplV1.new({from: owner})
+        proOfficesInstance = await ProfessionalOfficesImpl.new({from: owner})
         //await proOfficesInstance.initialize({ from: owner }); 
     })
 

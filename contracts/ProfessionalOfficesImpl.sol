@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity ^0.5.10;
 
 //pragma experimental ABIEncoderV2;
 import "openzeppelin-solidity/contracts/access/roles/WhitelistAdminRole.sol";
@@ -12,7 +12,7 @@ import "./ProfessionalOfficesStorage.sol";
  *  @dev TODO
  * 		- return struct when web3.js will be compatible with ABIEncoderV2 (or use ethers.js instead)
  */
-contract ProfessionalOfficesImplV1 is ProfessionalOfficesStorage, WhitelistAdminRole { 
+contract ProfessionalOfficesImpl is ProfessionalOfficesStorage, WhitelistAdminRole { 
 
     // EVENTS
 	event ProfessionalOfficeCreated(uint24 indexed id, bytes32 indexed name);

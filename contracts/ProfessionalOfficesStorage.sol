@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity ^0.5.10;
 
 /**
  *	@title  Contract that stores data about professionals agencies that maintain units
