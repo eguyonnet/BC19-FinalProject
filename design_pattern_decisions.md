@@ -1,9 +1,10 @@
-## Design choices
+## Global design decisions
 For managing **Professional Offices**, I have created two smart contracts in order to ease future developements :
 * *ProfessionalOfficesStorage.sol*, the storage contract (the data)
 * *ProfessionalOfficesImplV1.sol*, the business logic contract (modifiers, functions and events) which inherits from the storage contract
 
-For managing **product units**, I was at first about to consider each unit as a non-fungible token by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a contrat per unit. In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit (represented by a QR code sticked on the unit).
+For managing **product units**, I was at first about to consider each unit as a non-fungible token by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a *Unit.sol* contrat per unit. Still the factory references all the units created.
+In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit (represented by a QR code sticked on the unit).
 
 ### Inheritance pattern
 Inheritance is extensively used.
@@ -16,20 +17,13 @@ To ease the project setup for the reviewer (especially in developement environem
 The UnitFactory contract inherites from the Pausable contract from **OpenZeppelin**. Before creating a new Unit, a modifier checks if the contract has not been paused (by authorized addresses).
 
 ### Factory pattern
-See a way to prevent from creating Unit instances outside the factory, the following could help :
-http://eips.ethereum.org/EIPS/eip-1167 (This code (intended to be called from an implementor factory contract) will allow you to install a master copy of a contract, then easily (cheaply) create clones with separate state. The deployed bytecode just delegates all calls to the master contract address)
+The UnitFactory could be further improved :
+- by preventing Unit creation outside the Factory by comparing in the Unit constructor the msg.sender with the hard-coded UnitFactory contract address (for this we would need to know the contract address before deployment). 
+- maybe save some gas using EIP-1167 (http://eips.ethereum.org/EIPS/eip-1167
 
 ### Upgradability (PROXY through DELEGATE CALL)
-transparent proxy pattern
- 
- Project is built using Zepkit, a truffle box containing React, ZeppelinOS, OpenZeppelin, Truffle and Infura.
-This brings :
-- Upgradeable smart contracts with ZeppelinOS (using proxy pattern).
-- React &  Rimble to build usable and friendly interfaces.
+UnitFactory contract and ProfessionalOfficesImpl contract should be upgradable. I have tested (but not commited) the transparent proxy pattern from OpenZeppelin (https://docs.openzeppelin.com/sdk/2.5/writing-contracts) by extending the *Initializable* base contract and moving the code crom the actual constructor to a new *initialize* method. Be aware of the constraints for the futur updates of storage.
+The Unit contract does not need to be upgradable of course (there will be millions of them :)).
 
-
-## Questions
-- Does it make sence to use uint8, uint16, ... instead of uint32 to save space ?
-- Is it better to use bytes32 instead of string is length if limited ?
-- Should I manage Manufacturers and products with different contracts ? 
-- I wish I could use pragma "experimental ABIEncoderV2;" in order to return structs !! but as far as I know, web3.js could not deal with it
+### Dispatcher
+Along the unit life cycle, Unit contracts need to call other contracts (for instance 
