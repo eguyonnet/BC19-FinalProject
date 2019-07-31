@@ -12,15 +12,9 @@ In all my contracts, I have arrays :
 
 But I am so far never iterating through this arrays, which could for sure (due to the success of the solution :)) cause a denial of service because of gas limit.
 
-When there waq a need for searching an item by one of its attributs then I have created a dedicated mapping. For instance : 
-- **mapping(address => uint32) internal officeIdByActivTechnicianAddress** 
+When there waq a need for searching an item by one of its attributs then I have created a dedicated mapping. For instance, **mapping(address => uint32) internal officeIdByActivTechnicianAddress**  allows me to search for a technician address across all existing professional offices).
 
-allows me to search for a technician address across all existing professional offices).
-
-In case I would need later to iterate through an array because for example, I have to render all the units (their address) created by the factory, then I would create a paginated function, for instance :
-- **function getList(uint startPosition, uint length) external view returns (address[])**
-
-making sure that length is no exceeding 100 for instance.
+In case I would need later to iterate through an array because for example, I have to render all the units (their address) created by the factory, then I would create a paginated function like  **function getList(uint startPosition, uint length) external view returns (address[])** , making sure that length is no exceeding 100 for instance.
 
 
 
