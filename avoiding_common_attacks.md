@@ -4,7 +4,7 @@ The Unit contract needs to call an external contract in order to approve a techn
 ## Integer Overflow and Underflow
 In the ProfessionalOfficesImpl contract, the storage variable 'officeSequence' of type uint32 is incremented by 1 in the function 'addProfessionalOffice'. This function is accessible to authorized addresses only so there is no risk of overflow. So I have skipped the SafeMath overflow check (OpenZeppelin), thereby saving gas.
 
-### Denial of Service by Block Gas Limit (or startGas)
+## Denial of Service by Block Gas Limit (or startGas)
 In all my contracts, I have arrays :
 - UnitFactory : address[] private units
 - Unit : Operation[] private operations
@@ -16,6 +16,17 @@ When there waq a need for searching an item by one of its attributs then I have 
 
 In case I would need later to iterate through an array because for example, I have to render all the units (their address) created by the factory, then I would create a paginated function like  **function getList(uint startPosition, uint length) external view returns (address[])** , making sure that length is no exceeding 100 for instance.
 
+
+    function addProfessionalOffice(bytes32 _name, address[] calldata _owners, address[] calldata _technicians) external onlyWhitelistAdmin returns(uint32) {
+        // TODO test name not empty
+        for (uint i = 0; i < _owners.length; i++) {
+            require(_owners[i] != address(0), "Invalid owner address");
+		}
+        for (uint i = 0; i < _technicians.length; i++) {
+			require(_technicians[i] != address(0), "Invalid technician address");
+            // Check unicity across all offices
+            require(officeIdByActivTechnicianAddress[_technicians[i]] == 0, "Technician address already activ in other professional office");
+		}
 
 
 
