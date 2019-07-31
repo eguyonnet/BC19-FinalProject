@@ -1,4 +1,4 @@
-var myStorage = artifacts.require("ProfessionalOfficesImplV1");
+var myStorage = artifacts.require("ProfessionalOfficesImpl");
 
 module.exports = function(deployer) {
   deployer.deploy(myStorage);
