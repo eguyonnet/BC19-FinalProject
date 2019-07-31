@@ -9,7 +9,7 @@ pragma solidity ^0.5.10;
 contract ProfessionalOfficesStorage {
 
 	struct ProfessionalOffice {
-		uint24 id;  				        	// Primary Key -> technical id (0 value used for testing existence)
+		uint32 id;  				        	// Primary Key -> technical id (0 value used for testing existence)
 		bytes32 name;				        	// Office name
 		mapping(address => bool) owners; 		// Addresses that can update the data of their profesional office (not unique)
 		mapping(address => bool) technicians;	// Addresses representing technicians that operate / maintain units (unique across all profesional offices)
@@ -18,14 +18,14 @@ contract ProfessionalOfficesStorage {
 	}
 
 
-	uint24 internal officeSequence = 0; // 0 is not a vaid id (zero value used to test existence)
+	uint32 internal officeSequence = 0; // 0 is not a vaid id (zero value used to test existence)
 	// Collection of ProfessionalOffice
-	mapping(uint24 => ProfessionalOffice) internal offices;
+	mapping(uint32 => ProfessionalOffice) internal offices;
 	// Search technicians by address : make sure address is unique accross all ProfesionnalOffices and allow to find who (what agency) did maintain
 	// When an technician changes office, he gets a new address
-	mapping(address => uint24) internal officeIdByActivTechnicianAddress;
+	mapping(address => uint32) internal officeIdByActivTechnicianAddress;
 	// Iterate through ProfesionnalOffices
-	uint24[] internal officesIdList;
+	uint32[] internal officesIdList;
 
 	// Status of profesional offices
 	// I do not use ENUM because first at the moment they are not visible outside the contracts
