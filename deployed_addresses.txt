@@ -2,25 +2,15 @@
 
 ##Links to Etherscan
 
-ProfessionalOfficesImplV1 : https://ropsten.etherscan.io/tx/0xcacc48a63b7e70f19731c256d47a03298c2b60c870ca5d0d3cae92921388ea74
+ProfessionalOfficesImplV1 : https://ropsten.etherscan.io/tx/0x0acab3cdaf87a571356fb5b16ba681b963f8090e86ff3a45ec1e78373a180456
 
-UnitFactory : https://ropsten.etherscan.io/tx/0xf883146d8ed19f5f651ee5d3e81ac84117367758f2467f4c4bacb149ba8f22b1
+UnitFactory : https://ropsten.etherscan.io/tx/0x6f6cc3e0d34aeeddd1612d9110802f4c04c83b45850756d9ac4b86a597e25217
 
 ##Detailed informations
 
 $ truffle migrate --network ropsten
 
-Compiling your contracts...
-===========================
-> Compiling .\contracts\ManufacturersProductsStorage.sol
-> Compiling .\contracts\ProfessionalOfficesImplV1.sol
-> Compiling .\contracts\ProfessionalOfficesStorage.sol
-> Artifacts written to C:\Ethereum\BC19-FinalProject\build\contracts
-> Compiled successfully using:
-   - solc: 0.5.10+commit.5a6ea5b1.Emscripten.clang
-
-
---- I have removed her the dry run ---
+... I have removed compile and the dry run pats ...
 
 Starting migrations...
 ======================
@@ -34,13 +24,13 @@ Starting migrations...
 
    Deploying 'Migrations'
    ----------------------
-   > transaction hash:    0xf425c760259a7cd52999156ca05df7a7cd203b42f283314958eb0d599443e7e0
-   > Blocks: 3            Seconds: 40
-   > contract address:    0xc498755E9fA7cd4879cbdb070fc669cF54E9102f
-   > block number:        6097387
-   > block timestamp:     1564566532
+   > transaction hash:    0x24eaa266b77e10878b13d65820c8edf9b8ea6158996c69eb38464d4b4902773f
+   > Blocks: 1            Seconds: 24
+   > contract address:    0x8D798444D230D73708aaE3Bcbf2932a27218aEea
+   > block number:        6098826
+   > block timestamp:     1564587102
    > account:             0xffe6FA5B45e5BB74e4dB2d7260eEAAe23c18E756
-   > balance:             0.87517849
+   > balance:             0.81374606
    > gas used:            263741
    > gas price:           10 gwei
    > value sent:          0 ETH
@@ -56,25 +46,25 @@ Starting migrations...
 2_ProfessionalOffices.js
 ========================
 
-   Deploying 'ProfessionalOfficesImplV1'
-   -------------------------------------
-   > transaction hash:    0xcacc48a63b7e70f19731c256d47a03298c2b60c870ca5d0d3cae92921388ea74
-   > Blocks: 4            Seconds: 68
-   > contract address:    0x3526687968C92bba5C04cEE82D73c3a7a79fC97d
-   > block number:        6097393
-   > block timestamp:     1564566590
+   Deploying 'ProfessionalOfficesImpl'
+   -----------------------------------
+   > transaction hash:    0x0acab3cdaf87a571356fb5b16ba681b963f8090e86ff3a45ec1e78373a180456
+   > Blocks: 1            Seconds: 16
+   > contract address:    0x9f39171A293F8E2F68CdDEedcF926B094b9AC43a
+   > block number:        6098832
+   > block timestamp:     1564587194
    > account:             0xffe6FA5B45e5BB74e4dB2d7260eEAAe23c18E756
-   > balance:             0.84244323
-   > gas used:            3231503
+   > balance:             0.78053738
+   > gas used:            3278845
    > gas price:           10 gwei
    > value sent:          0 ETH
-   > total cost:          0.03231503 ETH
+   > total cost:          0.03278845 ETH
 
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.03231503 ETH
+   > Total cost:          0.03278845 ETH
 
 
 3_UnitFactory.js
@@ -82,13 +72,13 @@ Starting migrations...
 
    Deploying 'UnitFactory'
    -----------------------
-   > transaction hash:    0xf883146d8ed19f5f651ee5d3e81ac84117367758f2467f4c4bacb149ba8f22b1
-   > Blocks: 2            Seconds: 72
-   > contract address:    0xf6A2592f6fd0744C6c76B5A8b68c27aD647Ef3ab
-   > block number:        6097402
-   > block timestamp:     1564566689
+   > transaction hash:    0x6f6cc3e0d34aeeddd1612d9110802f4c04c83b45850756d9ac4b86a597e25217
+   > Blocks: 2            Seconds: 16
+   > contract address:    0x9bdD98FFaEA909EDfd4Bb66296887dFc3141b293
+   > block number:        6098838
+   > block timestamp:     1564587227
    > account:             0xffe6FA5B45e5BB74e4dB2d7260eEAAe23c18E756
-   > balance:             0.8166537
+   > balance:             0.75474785
    > gas used:            2551930
    > gas price:           10 gwei
    > value sent:          0 ETH
@@ -104,4 +94,4 @@ Starting migrations...
 Summary
 =======
 > Total deployments:   3
-> Final cost:          0.06047174 ETH
+> Final cost:          0.06094516 ETH
