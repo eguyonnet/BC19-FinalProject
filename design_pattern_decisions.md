@@ -3,7 +3,9 @@ For managing **Professional Offices**, I have created two smart contracts in ord
 * *ProfessionalOfficesStorage.sol*, the storage contract (the data)
 * *ProfessionalOfficesImplV1.sol*, the business logic contract (modifiers, functions and events) which inherits from the storage contract
 
-For managing **product units**, I was at first about to consider each unit as a non-fungible token by extending ERC721 to include additional data. But finally, I decided to go for a factory, *UnitFactory.sol* responsible for creating a *Unit.sol* contrat per unit. Still the factory references all the units created.
+For managing **product units**, I was at first about to consider each unit as a non-fungible token by extending ERC721 to include additional data. But finally, I decided to go for a factory :
+* *UnitFactory.sol* is responsible for creating a *Unit.sol* contrat per unit
+* Still the factory references all the units created
 In my opinion, the second solution leads to more upgradability, lighter contracts and conveniently attaches an address to a unit (represented by a QR code sticked on the unit).
 
 ## Inheritance pattern
