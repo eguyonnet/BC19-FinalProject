@@ -34,19 +34,19 @@ I have implemented a very simple client application (using React & Rimble) to de
 ## Setup environment
 
   ### Requirements
-  '- npm install -g ganache-cli'
-  '- npm install -g truffle@5.0.4'
-  '- npm install -g solc@0.5.10'
-  
+    - npm install -g ganache-cli
+    - npm install -g truffle@5.0.4
+    - npm install -g solc@0.5.10
+
   Download my project to a local drive (https://github.com/eguyonnet/BC19-FinalProject.git)
 
   ### Smart contracts
   From the root of the project, install the dependencies (referenced in package-json) :
-  - npm install
-  
+    - npm install
+
   Once you have ganache running, you can test the smart contracts and migrate them :
-  - truffle test
-  - truffle migrate
+    - truffle test
+    - truffle migrate
 
   CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
 
