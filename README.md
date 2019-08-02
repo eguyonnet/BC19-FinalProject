@@ -35,32 +35,32 @@ I have implemented a very simple client application (using React & Rimble) to de
 
   ### Requirements
   ```
-    - npm install -g ganache-cli
-    - npm install -g truffle@5.0.4
-    - npm install -g solc@0.5.10
+    npm install -g ganache-cli
+    npm install -g truffle@5.0.4
+    npm install -g solc@0.5.10
   ```
   Download my project to a local drive (https://github.com/eguyonnet/BC19-FinalProject.git)
 
   ### Smart contracts
   From the root of the project, install the dependencies (referenced in package-json) :
   ```
-    - npm install
+    npm install
   ```
   Once you have ganache running, you can test the smart contracts and migrate them :
   ```
-    - truffle test
-    - truffle migrate
+    truffle test
+    truffle migrate
   ```
   CI  available at https://travis-ci.org/eguyonnet/BC19-FinalProject/jobs/564684272/config
 
   ### Dapp
   From the client directory, install the dependencies (referenced in package-json) :
   ```
-    - npm install
+    npm install
   ```
   Start an http server and launch the Dapp (it will automatically open a browser window at URL http://localhost:3000):
   ```
-    - npm run start
+    npm run start
   ```
 ## Beyond this scope
 * The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
