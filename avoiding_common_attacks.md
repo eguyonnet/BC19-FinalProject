@@ -27,15 +27,15 @@ making sure that length is no exceeding 100 for instance.
 
 Ah yes, ok in fact I forgot I iterate through input arrays (see code below from ProfessionalOfficesImpl contract). But here it would not make sense to add 10 000 owners or technicians at onces. First because of real life, second because the transaction would be expensive and finally because if it runs out of gas then only this transaction is rejected. 
 ```
-    function addProfessionalOffice(bytes32 _name, address[] calldata _owners, address[] calldata _technicians) external onlyWhitelistAdmin returns(uint32) {
-        for (uint i = 0; i < _owners.length; i++) {
-            require(_owners[i] != address(0), "Invalid owner address");
-	}
-        for (uint i = 0; i < _technicians.length; i++) {
-	    require(_technicians[i] != address(0), "Invalid technician address");
-            // Check unicity across all offices
-            require(officeIdByActivTechnicianAddress[_technicians[i]] == 0, "Technician address already activ in other professional office");
-	}
+function addProfessionalOffice(bytes32 _name, address[] calldata _owners, address[] calldata _technicians) external onlyWhitelistAdmin returns(uint32) {
+    for (uint i = 0; i < _owners.length; i++) {
+        require(_owners[i] != address(0), "Invalid owner address");
+    }
+    for (uint i = 0; i < _technicians.length; i++) {
+        require(_technicians[i] != address(0), "Invalid technician address");
+        // Check unicity across all offices
+        require(officeIdByActivTechnicianAddress[_technicians[i]] == 0, "Technician address already activ in other professional office");
+    }
 ```
 
 
