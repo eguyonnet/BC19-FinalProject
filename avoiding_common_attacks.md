@@ -7,9 +7,9 @@ In the ProfessionalOfficesImpl contract, the storage variable 'officeSequence' o
 ## Denial of Service by Block Gas Limit (or startGas)
 In all my contracts, I have arrays :
     ```
-    *UnitFactory :* address[] private units
-    *Unit :* Operation[] private operations
-    *ProfessionalOfficesImpl :* uint32[] internal officesIdList
+    UnitFactory : address[] private units
+    Unit : Operation[] private operations
+    ProfessionalOfficesImpl : uint32[] internal officesIdList
     ```
 But I am so far never iterating through this arrays, which could for sure (due to the success of the solution :)) cause a denial of service because of gas limit.
 
