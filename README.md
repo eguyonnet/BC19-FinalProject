@@ -34,9 +34,9 @@ I have implemented a very simple client application (using React & Rimble) to de
 ## Setup environment
 
   ### Requirements
-  - npm install -g ganache-cli
-  - npm install -g truffle@5.0.4
-  - npm install -g solc@0.5.10
+  '- npm install -g ganache-cli'
+  '- npm install -g truffle@5.0.4'
+  '- npm install -g solc@0.5.10'
   
   Download my project to a local drive (https://github.com/eguyonnet/BC19-FinalProject.git)
 
