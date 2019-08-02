@@ -13,7 +13,7 @@ In all my contracts, I have arrays :
     ```
 But I am so far never iterating through this arrays, which could for sure (due to the success of the solution :)) cause a denial of service because of gas limit.
 
-    When there was a need for searching an item by one of its attributs then I have created a dedicated mapping. For instance, 
+When there was a need for searching an item by one of its attributs then I have created a dedicated mapping. For instance, 
     ```
     mapping(address => uint32) internal officeIdByActivTechnicianAddress
     ```
