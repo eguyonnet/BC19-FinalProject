@@ -6,7 +6,7 @@ export default class AddProfOffice extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { validated: false, name: 'CrashTest', ownerAddress: '0x1Cc90033F594E93B915FEd4E310Df5Ab98ac9271', techAddress: '0x50eEd4799e3b963C45c122db3F22Fa67791722FE'};
+        this.state = { validated: false, name: '', ownerAddress: '', techAddress: ''};
     
         this.handleNameValidation = this.handleNameValidation.bind(this);
         this.handleOwnerAddressValidation = this.handleOwnerAddressValidation.bind(this);

@@ -48,13 +48,19 @@ class App extends Component {
         balance = web3.utils.fromWei(balance, 'ether');
         let deployedNetwork = null;
         let instancePO = null;
+        // Emmanuel 2019-08-12
+        // Bug fix to prevent from issue using ganache-cli (not occuring with ganache)
         if (ProfessionalOffices.networks) {
+          /*
           if (networkId > 9999) {
             // Developpent
-            deployedNetwork = ProfessionalOffices.networks["*"];
+            //deployedNetwork = ProfessionalOffices.networks["*"];
+            deployedNetwork = ProfessionalOffices.networks[networkId.toString()];
           } else {
             deployedNetwork = ProfessionalOffices.networks[networkId.toString()];
           }
+          */
+          deployedNetwork = ProfessionalOffices.networks[networkId.toString()];
           if (deployedNetwork) {
             instancePO = new web3.eth.Contract(ProfessionalOffices.abi, deployedNetwork && deployedNetwork.address,);
           }

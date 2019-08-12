@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Flex, Box, Button, Table } from 'rimble-ui';
+import { Table } from 'rimble-ui';
 //import styles from './DisplayProfOffice.module.scss';
 
 export default class DisplayProfOffice extends Component {
@@ -7,14 +7,6 @@ export default class DisplayProfOffice extends Component {
     render()  {
         return (
             <div>
-                <Flex>
-                    <Box p={0} width={3 / 4}>
-                        <h2>Professional offices</h2>
-                    </Box>
-                    <Box p={0} width={1 / 4}>
-                        <Button onClick={() => this.props.refreshAll()} size="small">Refresh list</Button>
-                    </Box>
-                </Flex>
                 <Table>
                     <thead>
                         <tr>
