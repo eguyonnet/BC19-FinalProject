@@ -2,6 +2,11 @@ const path = require("path");
 require('dotenv').config();
 const HDWalletProvider = require("truffle-hdwallet-provider");
 
+// Plugin : MythX (Security analysis)
+//    https://mythx.io/
+//    https://docs.mythx.io/en/latest/tools/truffle/
+
+
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
@@ -41,6 +46,23 @@ module.exports = {
       gas: 3000000,
       gasPrice: 10000000000
     }*/
+  },
+  plugins: [
+    "truffle-security"
+    //'truffle-plugin-verify'
+  ],
+  /* For verifying contracts : API-KEY for Etherscan API
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY
+  },
+  */
+  mocha: {
+    // timeout: 100000
+    reporter: 'eth-gas-reporter',
+    reporterOptions: {
+      currency: 'USD',
+    }
+  
   },
   compilers: {
     solc: {
