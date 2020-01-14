@@ -27,7 +27,7 @@ The UnitFactory could be further improved :
 - maybe save some gas using EIP-1167 (http://eips.ethereum.org/EIPS/eip-1167
 
 ## Upgradability (PROXY through DELEGATE CALL)
-UnitFactory contract and ProfessionalOfficesImpl contract should be upgradable. I have tested (but not commited) the transparent proxy pattern from OpenZeppelin (https://docs.openzeppelin.com/sdk/2.5/writing-contracts) by extending the *Initializable* base contract and moving the code crom the actual constructor to a new *initialize* method. Be aware of the constraints for the futur updates of storage.
+UnitFactory contract and ProfessionalOfficesImpl contract should be upgradable. I have tested (but not commited) the transparent proxy pattern from OpenZeppelin (https://docs.openzeppelin.com/sdk/2.5/writing-contracts) by extending the *Initializable* base contract and moving the code from the actual constructor to a new *initialize* method. Be aware of the constraints for the futur updates of storage.
 The Unit contract does not need to be upgradable of course (there will be millions of them :)).
 
 ## Dispatcher
