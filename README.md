@@ -63,9 +63,9 @@ I have implemented a very simple client application (using React & Rimble) to de
     npm run start
   ```
 ## Beyond this scope
-* The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for techicians.
+* The certification bodies that control the quality of the maintainance operation, should be referenced in a smart contract in order to verify the addresses (msg.sender) exactely as it works for technicians.
 * It would be convenient to reference Manufacturers and products, especially for manufacturers to gather statistics about their products.
 * A scoring could be calculated for each unit as an indicator of the level of quality of the maintainance of a unit. The calculation rules would vary from one product to an other. This indicator could be used for instance by insurers/owners to negociate the insurance premium for a contract, or by buyers to estimate the value of a second hand unit.
 * Develop several DApp (for the different actors) with dedicated GIT repositories
 * Integrate with IPFS and off-chain applications (legacy systems, data analysis, search functionalities, ...)
-* Messaging protocol (Whisper) could be used by manufacturer to alert units owners about technical issues, or by insurer for different pruposes. 
+* Messaging protocol (Whisper) could be used by manufacturer to alert units owners about technical issues, or by insurer for different purposes. 
